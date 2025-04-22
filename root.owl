@@ -1,122 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rdf:RDF
-  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xmlns:ns1="http://www.w3.org/2002/07/owl#"
-  xmlns:ns2="http://www.geneontology.org/formats/oboInOwl#"
+  xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#"
+  xmlns:edam="http://edamontology.org/"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-  xmlns:ns3="http://edamontology.org/"
 >
-  <ns1:Class rdf:about="http://edamontology.org/data_auto006">
-    <rdfs:label>GroceryShopping</rdfs:label>
-    <ns2:hasDefinition>Auto-generated definition for GroceryShopping</ns2:hasDefinition>
-    <ns3:created_in>dev:2025-04-22</ns3:created_in>
-    <rdfs:comment>A grocery shopping instance</rdfs:comment>
-  </ns1:Class>
-  <ns1:Class rdf:about="http://edamontology.org/data_auto009">
-    <rdfs:label>PositionTracking</rdfs:label>
-    <ns2:hasDefinition>Auto-generated definition for PositionTracking</ns2:hasDefinition>
-    <ns3:created_in>dev:2025-04-22</ns3:created_in>
-    <rdfs:comment>PositionTracking predstavuje sledovanie polohy užívateľa pomocou GPS údajov.</rdfs:comment>
-  </ns1:Class>
-  <ns1:Class rdf:about="http://edamontology.org/data_auto007">
-    <rdfs:label>GroceryItem</rdfs:label>
-    <ns2:hasDefinition>Auto-generated definition for GroceryItem</ns2:hasDefinition>
-    <ns3:created_in>dev:2025-04-22</ns3:created_in>
-    <rdfs:comment>An item in a grocery shopping</rdfs:comment>
+  <ns1:Class rdf:about="http://edamontology.org/data_auto003">
+    <rdfs:label>updatedAt</rdfs:label>
+    <oboInOwl:hasDefinition>Dátum a čas poslednej aktualizácie záznamu</oboInOwl:hasDefinition>
+    <edam:created_in>dev:2025-04-22</edam:created_in>
   </ns1:Class>
   <ns1:Class rdf:about="http://edamontology.org/data_auto002">
-    <rdfs:label>Person</rdfs:label>
-    <ns2:hasDefinition>Auto-generated definition for Person</ns2:hasDefinition>
-    <ns3:created_in>dev:2025-04-22</ns3:created_in>
-    <rdfs:subClassOf rdf:nodeID="N2d7211e66acc49f3b7dc4053f19b3298"/>
-    <rdfs:subClassOf rdf:nodeID="N05a4838291324872838f522c39d963bd"/>
-    <rdfs:subClassOf rdf:nodeID="Ndcb6c9caa8254d64b028ce3d003a7f64"/>
-    <rdfs:subClassOf rdf:nodeID="Nab429a48d9aa4ecca6ed5c29a645101d"/>
-    <rdfs:comment>Osoba definovaná registračnými údajmi</rdfs:comment>
-  </ns1:Class>
-  <ns1:Class rdf:about="http://edamontology.org/data_auto005">
-    <rdfs:label>ListOfGroceryShoppings</rdfs:label>
-    <ns2:hasDefinition>Auto-generated definition for ListOfGroceryShoppings</ns2:hasDefinition>
-    <ns3:created_in>dev:2025-04-22</ns3:created_in>
-    <rdfs:comment>ListOfGroceryShopping predstavuje kompletný zoznam (históriu) všetkých nákupov potravín daného užívateľa.</rdfs:comment>
-  </ns1:Class>
-  <ns1:Class rdf:about="http://edamontology.org/data_auto011">
-    <rdfs:label>Nehnutelnost</rdfs:label>
-    <ns2:hasDefinition>Auto-generated definition for Nehnutelnost</ns2:hasDefinition>
-    <ns3:created_in>dev:2025-04-22</ns3:created_in>
-    <rdfs:comment>Nehnuteľnosť definovaná schémou</rdfs:comment>
-  </ns1:Class>
-  <ns1:Class rdf:about="http://edamontology.org/data_auto016">
-    <rdfs:label>PropertyType</rdfs:label>
-    <ns2:hasDefinition>Auto-generated definition for PropertyType</ns2:hasDefinition>
-    <ns3:created_in>dev:2025-04-22</ns3:created_in>
-    <ns1:equivalentClass rdf:resource="http://edamontology.org/data_auto017"/>
-  </ns1:Class>
-  <ns1:Class rdf:about="http://edamontology.org/data_auto003">
-    <rdfs:label>Address</rdfs:label>
-    <ns2:hasDefinition>Auto-generated definition for Address</ns2:hasDefinition>
-    <ns3:created_in>dev:2025-04-22</ns3:created_in>
-    <rdfs:subClassOf rdf:nodeID="Nc1b07e2163bc482db06adab6ae3ef424"/>
-    <rdfs:subClassOf rdf:nodeID="N793a9e68de5d4f52afaa8d0565d313ed"/>
-    <rdfs:subClassOf rdf:nodeID="Nc027a0220ba14410a0aa47a53bf8c8a2"/>
-    <rdfs:comment>Adresa zhromažďuje kompletnú adresu, ktorú užívateľ poskytol, vrátane ulice, mesta/obce, PSČ a prípadne aj krajiny.</rdfs:comment>
-  </ns1:Class>
-  <ns1:Class rdf:about="http://edamontology.org/data_auto001">
-    <rdfs:label>Root</rdfs:label>
-    <ns2:hasDefinition>Auto-generated definition for Root</ns2:hasDefinition>
-    <ns3:created_in>dev:2025-04-22</ns3:created_in>
-    <rdfs:subClassOf rdf:nodeID="Ncba83bf697ca44bf839c91bbc629020e"/>
-    <rdfs:subClassOf rdf:nodeID="N5ea590ddf46d48fdba005e913a93470d"/>
-    <rdfs:subClassOf rdf:nodeID="Na312056b1a3b4610bdfc73054c48559c"/>
-    <rdfs:subClassOf rdf:nodeID="Ndc56c98028f6445cb9a5646c18cad833"/>
-    <rdfs:comment>Root object representing the main data structure</rdfs:comment>
-  </ns1:Class>
-  <ns1:Class rdf:about="http://edamontology.org/data_auto004">
-    <rdfs:label>BiometricData</rdfs:label>
-    <ns2:hasDefinition>Auto-generated definition for BiometricData</ns2:hasDefinition>
-    <ns3:created_in>dev:2025-04-22</ns3:created_in>
-    <rdfs:comment>Biometric data of a person</rdfs:comment>
-  </ns1:Class>
-  <ns1:Class rdf:about="http://edamontology.org/data_auto014">
-    <rdfs:label>QASentiment</rdfs:label>
-    <ns2:hasDefinition>Auto-generated definition for QASentiment</ns2:hasDefinition>
-    <ns3:created_in>dev:2025-04-22</ns3:created_in>
-    <ns1:equivalentClass rdf:resource="http://edamontology.org/data_auto015"/>
-  </ns1:Class>
-  <ns1:Class rdf:about="http://edamontology.org/data_auto012">
-    <rdfs:label>EyeColor</rdfs:label>
-    <ns2:hasDefinition>Auto-generated definition for EyeColor</ns2:hasDefinition>
-    <ns3:created_in>dev:2025-04-22</ns3:created_in>
-    <ns1:equivalentClass rdf:resource="http://edamontology.org/data_auto013"/>
+    <rdfs:label>createdAt</rdfs:label>
+    <oboInOwl:hasDefinition>Dátum a čas vytvorenia záznamu</oboInOwl:hasDefinition>
+    <edam:created_in>dev:2025-04-22</edam:created_in>
   </ns1:Class>
   <ns1:Class rdf:about="http://edamontology.org/data_auto008">
-    <rdfs:label>RawQA</rdfs:label>
-    <ns2:hasDefinition>Auto-generated definition for RawQA</ns2:hasDefinition>
-    <ns3:created_in>dev:2025-04-22</ns3:created_in>
-    <rdfs:comment>Obsahuje údaje o sentimentálnej analýze prebiehajúcej konverzácie</rdfs:comment>
+    <rdfs:label>rawQA</rdfs:label>
+    <oboInOwl:hasDefinition>Obsahuje údaje o sentimentálnej analýze prebiehajúcej konverzácie</oboInOwl:hasDefinition>
+    <edam:created_in>dev:2025-04-22</edam:created_in>
+  </ns1:Class>
+  <ns1:Class rdf:about="http://edamontology.org/data_auto009">
+    <rdfs:label>positionTracking</rdfs:label>
+    <oboInOwl:hasDefinition>PositionTracking predstavuje sledovanie polohy užívateľa pomocou GPS údajov. Vzťah k užívateľovi spočíva v možnosti zaznamenávať a analyzovať jeho pohybové aktivity, čo môže byť využité napríklad v navigačných aplikáciách, športových aktivitách alebo bezpečnostných systémoch.</oboInOwl:hasDefinition>
+    <edam:created_in>dev:2025-04-22</edam:created_in>
+  </ns1:Class>
+  <ns1:Class rdf:about="http://edamontology.org/data_auto007">
+    <rdfs:label>listOfGroceryShoppings</rdfs:label>
+    <oboInOwl:hasDefinition>ListOfGroceryShopping predstavuje kompletný zoznam (históriu) všetkých nákupov potravín daného užívateľa. Vzťah k užívateľovi je založený na ucelenom prehľade o jeho spotrebných návykoch, ktorý môže využiť pri tvorbe rodinného rozpočtu alebo organizácii nákupov. Umožňuje spätne dohľadať konkrétne dátumy, prípadne aj miesta a sumy (ak sa ukladajú). Pre užívateľa je to praktický nástroj na správu financií a plánovanie domácich zásob potravín.</oboInOwl:hasDefinition>
+    <edam:created_in>dev:2025-04-22</edam:created_in>
+  </ns1:Class>
+  <ns1:Class rdf:about="http://edamontology.org/data_auto005">
+    <rdfs:label>relationships</rdfs:label>
+    <edam:created_in>dev:2025-04-22</edam:created_in>
+  </ns1:Class>
+  <ns1:Class rdf:about="http://edamontology.org/data_auto001">
+    <rdfs:label>userUuid</rdfs:label>
+    <oboInOwl:hasDefinition>Jedinečný identifikátor používateľa</oboInOwl:hasDefinition>
+    <edam:created_in>dev:2025-04-22</edam:created_in>
+  </ns1:Class>
+  <ns1:Class rdf:about="http://edamontology.org/data_auto006">
+    <rdfs:label>biometricData</rdfs:label>
+    <edam:created_in>dev:2025-04-22</edam:created_in>
+  </ns1:Class>
+  <ns1:Class rdf:about="http://edamontology.org/data_auto004">
+    <rdfs:label>currentUser</rdfs:label>
+    <oboInOwl:hasDefinition>Aktuálny používateľ definovaný registračnými údajmi</oboInOwl:hasDefinition>
+    <edam:created_in>dev:2025-04-22</edam:created_in>
   </ns1:Class>
   <ns1:Class rdf:about="http://edamontology.org/data_auto010">
-    <rdfs:label>GPSPoint</rdfs:label>
-    <ns2:hasDefinition>Auto-generated definition for GPSPoint</ns2:hasDefinition>
-    <ns3:created_in>dev:2025-04-22</ns3:created_in>
-    <rdfs:comment>A GPS point with coordinates and timestamp</rdfs:comment>
-  </ns1:Class>
-  <ns1:Class rdf:about="http://edamontology.org/data_auto015">
-    <rdfs:label>Na96a72db3c4f40e7b43c05fdb29dc9c9</rdfs:label>
-    <ns2:hasDefinition>Auto-generated definition for Na96a72db3c4f40e7b43c05fdb29dc9c9</ns2:hasDefinition>
-    <ns3:created_in>dev:2025-04-22</ns3:created_in>
-    <ns1:oneOf rdf:nodeID="Nef35615d28af472594e51f9036902b89"/>
-  </ns1:Class>
-  <ns1:Class rdf:about="http://edamontology.org/data_auto013">
-    <rdfs:label>Nf8f0347d61824b8883ba637df5d48cc9</rdfs:label>
-    <ns2:hasDefinition>Auto-generated definition for Nf8f0347d61824b8883ba637df5d48cc9</ns2:hasDefinition>
-    <ns3:created_in>dev:2025-04-22</ns3:created_in>
-    <ns1:oneOf rdf:nodeID="Ne95b07eb69d74a639d32e844d0de6b1e"/>
-  </ns1:Class>
-  <ns1:Class rdf:about="http://edamontology.org/data_auto017">
-    <rdfs:label>N853fac5ebfae4613b539d06cb23ce1f4</rdfs:label>
-    <ns2:hasDefinition>Auto-generated definition for N853fac5ebfae4613b539d06cb23ce1f4</ns2:hasDefinition>
-    <ns3:created_in>dev:2025-04-22</ns3:created_in>
-    <ns1:oneOf rdf:nodeID="N121882834e304aa9b0e6e4d71b2f06fe"/>
+    <rdfs:label>nehnutelnosti</rdfs:label>
+    <oboInOwl:hasDefinition>Zoznam nehnuteľností používateľa</oboInOwl:hasDefinition>
+    <edam:created_in>dev:2025-04-22</edam:created_in>
   </ns1:Class>
 </rdf:RDF>
