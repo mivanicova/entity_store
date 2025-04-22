@@ -1,57 +1,423 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rdf:RDF
   xmlns:ns1="http://www.w3.org/2002/07/owl#"
-  xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#"
-  xmlns:edam="http://edamontology.org/"
   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:ns2="http://edamontology.org/"
+  xmlns:ns3="http://www.geneontology.org/formats/oboInOwl#"
 >
+  <ns1:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/root#timestamp">
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto010"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/root#GPSPoint"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:comment>Časový údaj záznamu</rdfs:comment>
+  </ns1:DatatypeProperty>
+  <ns1:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/root#purchasedAt">
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto006"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/root#GroceryShopping"/>
+    <rdfs:comment>Dátum a čas nákupu</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  </ns1:DatatypeProperty>
+  <ns1:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/root#propertyUID">
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto011"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/root#Nehnutelnost"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment>Jedinečný identifikátor nehnuteľnosti generovaný systémom</rdfs:comment>
+  </ns1:DatatypeProperty>
+  <ns1:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/root#hasFriend">
+    <rdfs:comment>Zoznam priateľov používateľa</rdfs:comment>
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto001"/>
+    <rdfs:range rdf:resource="http://edamontology.org/data_auto002"/>
+  </ns1:ObjectProperty>
+  <ns1:Class rdf:about="http://edamontology.org/data_auto013">
+    <rdfs:label>Nf8f0347d61824b8883ba637df5d48cc9</rdfs:label>
+    <ns3:hasDefinition>Auto-definition for Nf8f0347d61824b8883ba637df5d48cc9</ns3:hasDefinition>
+    <ns2:created_in>dev:2025-04-22</ns2:created_in>
+    <ns1:oneOf rdf:parseType="Collection">
+      <rdf:Description rdf:about="http://www.semanticweb.org/ontologies/root#modrá"/>
+      <rdf:Description rdf:about="http://www.semanticweb.org/ontologies/root#zelená"/>
+      <rdf:Description rdf:about="http://www.semanticweb.org/ontologies/root#hnedá"/>
+      <rdf:Description rdf:about="http://www.semanticweb.org/ontologies/root#sivá"/>
+      <rdf:Description rdf:about="http://www.semanticweb.org/ontologies/root#mix"/>
+    </ns1:oneOf>
+  </ns1:Class>
+  <ns1:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/root#GPSLongitude">
+    <rdfs:comment>Zemepisná dĺžka</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto010"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/root#GPSPoint"/>
+  </ns1:DatatypeProperty>
+  <ns1:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/root#hasSentiment">
+    <rdfs:range rdf:resource="http://edamontology.org/data_auto014"/>
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto008"/>
+  </ns1:ObjectProperty>
+  <ns1:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/root#GPSAltitude">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:comment>Nadmorská výška</rdfs:comment>
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto010"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/root#GPSPoint"/>
+  </ns1:DatatypeProperty>
+  <ns1:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/root#devXGroceryFlag">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:comment>DevXGroceryFlag určuje, či užívateľ pri svojom nákupe potravín použil digitálnu menu DevX ako platobný prostriedok</rdfs:comment>
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto006"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/root#GroceryShopping"/>
+  </ns1:DatatypeProperty>
+  <ns1:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/root#hasPropertyType">
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto011"/>
+    <rdfs:range rdf:resource="http://edamontology.org/data_auto016"/>
+  </ns1:ObjectProperty>
+  <ns1:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/root#hasFamilyMember">
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto001"/>
+    <rdfs:range rdf:resource="http://edamontology.org/data_auto002"/>
+    <rdfs:comment>Zoznam blízkych príbuzných používateľa</rdfs:comment>
+  </ns1:ObjectProperty>
+  <ns1:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/root#GPSLatitude">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:comment>Zemepisná šírka</rdfs:comment>
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto010"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/root#GPSPoint"/>
+  </ns1:DatatypeProperty>
+  <ns1:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/root#hasPositionTracking">
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto001"/>
+    <rdfs:range rdf:resource="http://edamontology.org/data_auto009"/>
+  </ns1:ObjectProperty>
+  <ns1:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/root#hasColleague">
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto001"/>
+    <rdfs:range rdf:resource="http://edamontology.org/data_auto002"/>
+    <rdfs:comment>Zoznam kolegov používateľa z pracovného prostredia</rdfs:comment>
+  </ns1:ObjectProperty>
+  <ns1:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/root#hasEyeColor">
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto004"/>
+    <rdfs:range rdf:resource="http://edamontology.org/data_auto012"/>
+  </ns1:ObjectProperty>
+  <ns1:Class rdf:about="http://edamontology.org/data_auto017">
+    <rdfs:label>N853fac5ebfae4613b539d06cb23ce1f4</rdfs:label>
+    <ns3:hasDefinition>Auto-definition for N853fac5ebfae4613b539d06cb23ce1f4</ns3:hasDefinition>
+    <ns2:created_in>dev:2025-04-22</ns2:created_in>
+    <ns1:oneOf rdf:parseType="Collection">
+      <rdf:Description rdf:about="http://www.semanticweb.org/ontologies/root#RodinnýDom"/>
+      <rdf:Description rdf:about="http://www.semanticweb.org/ontologies/root#Byt"/>
+      <rdf:Description rdf:about="http://www.semanticweb.org/ontologies/root#Apartmán"/>
+      <rdf:Description rdf:about="http://www.semanticweb.org/ontologies/root#Vila"/>
+      <rdf:Description rdf:about="http://www.semanticweb.org/ontologies/root#KomerčnáBudova"/>
+      <rdf:Description rdf:about="http://www.semanticweb.org/ontologies/root#Sklad"/>
+      <rdf:Description rdf:about="http://www.semanticweb.org/ontologies/root#Garáž"/>
+      <rdf:Description rdf:about="http://www.semanticweb.org/ontologies/root#Iné"/>
+    </ns1:oneOf>
+  </ns1:Class>
+  <ns1:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/root#hasBiometricData">
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto001"/>
+    <rdfs:range rdf:resource="http://edamontology.org/data_auto004"/>
+  </ns1:ObjectProperty>
+  <ns1:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/root#hasGroceryShopping">
+    <rdfs:range rdf:resource="http://edamontology.org/data_auto006"/>
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto005"/>
+  </ns1:ObjectProperty>
+  <ns1:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/root#phoneNumber">
+    <rdfs:comment>PhoneNumber predstavuje telefónne číslo užívateľa</rdfs:comment>
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto002"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/root#Person"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </ns1:DatatypeProperty>
+  <ns1:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/root#hasGroceryItem">
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto006"/>
+    <rdfs:range rdf:resource="http://edamontology.org/data_auto007"/>
+  </ns1:ObjectProperty>
+  <ns1:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/root#price">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto007"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/root#GroceryItem"/>
+    <rdfs:comment>Cena za kus</rdfs:comment>
+  </ns1:DatatypeProperty>
+  <ns1:Ontology rdf:about="http://www.semanticweb.org/ontologies/root">
+    <rdfs:comment>Ontology generated from compiled_root.json</rdfs:comment>
+  </ns1:Ontology>
+  <ns1:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/root#hasGPSPoint">
+    <rdfs:range rdf:resource="http://edamontology.org/data_auto010"/>
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto009"/>
+  </ns1:ObjectProperty>
+  <ns1:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/root#quantity">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto007"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/root#GroceryItem"/>
+    <rdfs:comment>Počet kusov</rdfs:comment>
+  </ns1:DatatypeProperty>
+  <ns1:Class rdf:about="http://edamontology.org/data_auto015">
+    <rdfs:label>Na96a72db3c4f40e7b43c05fdb29dc9c9</rdfs:label>
+    <ns3:hasDefinition>Auto-definition for Na96a72db3c4f40e7b43c05fdb29dc9c9</ns3:hasDefinition>
+    <ns2:created_in>dev:2025-04-22</ns2:created_in>
+    <ns1:oneOf rdf:parseType="Collection">
+      <rdf:Description rdf:about="http://www.semanticweb.org/ontologies/root#pozitívny"/>
+      <rdf:Description rdf:about="http://www.semanticweb.org/ontologies/root#neutrálny"/>
+      <rdf:Description rdf:about="http://www.semanticweb.org/ontologies/root#negatívny"/>
+    </ns1:oneOf>
+  </ns1:Class>
+  <ns1:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/root#propertyName">
+    <rdfs:comment>Názov nehnuteľnosti</rdfs:comment>
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto011"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/root#Nehnutelnost"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </ns1:DatatypeProperty>
+  <ns1:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/root#hasProperty">
+    <rdfs:range rdf:resource="http://edamontology.org/data_auto011"/>
+    <rdfs:comment>Zoznam nehnuteľností používateľa</rdfs:comment>
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto001"/>
+  </ns1:ObjectProperty>
+  <ns1:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/root#hasGroceryShoppings">
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto001"/>
+    <rdfs:range rdf:resource="http://edamontology.org/data_auto005"/>
+  </ns1:ObjectProperty>
+  <ns1:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/root#itemName">
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto007"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/root#GroceryItem"/>
+    <rdfs:comment>Názov produktu</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </ns1:DatatypeProperty>
+  <ns1:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/root#hasRawQA">
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto001"/>
+    <rdfs:range rdf:resource="http://edamontology.org/data_auto008"/>
+  </ns1:ObjectProperty>
+  <ns1:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/root#hasCurrentUser">
+    <rdfs:comment>Aktuálny používateľ definovaný registračnými údajmi</rdfs:comment>
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto001"/>
+    <rdfs:range rdf:resource="http://edamontology.org/data_auto002"/>
+  </ns1:ObjectProperty>
   <ns1:Class rdf:about="http://edamontology.org/data_auto003">
-    <rdfs:label>updatedAt</rdfs:label>
-    <oboInOwl:hasDefinition>Dátum a čas poslednej aktualizácie záznamu</oboInOwl:hasDefinition>
-    <edam:created_in>dev:2025-04-22</edam:created_in>
+    <rdfs:label>Address</rdfs:label>
+    <ns3:hasDefinition>Auto-definition for Address</ns3:hasDefinition>
+    <ns2:created_in>dev:2025-04-22</ns2:created_in>
+    <rdfs:subClassOf>
+      <ns1:Restriction rdf:nodeID="Nc1b07e2163bc482db06adab6ae3ef424">
+        <ns1:onProperty rdf:resource="http://www.semanticweb.org/ontologies/root#city"/>
+        <ns1:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</ns1:cardinality>
+      </ns1:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <ns1:Restriction rdf:nodeID="N793a9e68de5d4f52afaa8d0565d313ed">
+        <ns1:onProperty rdf:resource="http://www.semanticweb.org/ontologies/root#street"/>
+        <ns1:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</ns1:cardinality>
+      </ns1:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <ns1:Restriction rdf:nodeID="Nc027a0220ba14410a0aa47a53bf8c8a2">
+        <ns1:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</ns1:cardinality>
+        <ns1:onProperty rdf:resource="http://www.semanticweb.org/ontologies/root#postalCode"/>
+      </ns1:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment>Adresa zhromažďuje kompletnú adresu, ktorú užívateľ poskytol, vrátane ulice, mesta/obce, PSČ a prípadne aj krajiny.</rdfs:comment>
+  </ns1:Class>
+  <ns1:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/root#firstName">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment>FirsttName vyjadruje krstné meno užívateľa</rdfs:comment>
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto002"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/root#Person"/>
+  </ns1:DatatypeProperty>
+  <ns1:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/root#postalCode">
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto003"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/root#Address"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment>AddressZIP označuje poštové smerovacie číslo (PSČ)</rdfs:comment>
+  </ns1:DatatypeProperty>
+  <ns1:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/root#updatedAt">
+    <rdfs:comment>Dátum a čas poslednej aktualizácie záznamu</rdfs:comment>
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto001"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/root#Root"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  </ns1:DatatypeProperty>
+  <ns1:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/root#lastName">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment>LastName predstavuje priezvisko užívateľa</rdfs:comment>
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto002"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/root#Person"/>
+  </ns1:DatatypeProperty>
+  <ns1:Class rdf:about="http://edamontology.org/data_auto004">
+    <rdfs:label>BiometricData</rdfs:label>
+    <ns3:hasDefinition>Auto-definition for BiometricData</ns3:hasDefinition>
+    <ns2:created_in>dev:2025-04-22</ns2:created_in>
+    <rdfs:comment>Biometric data of a person</rdfs:comment>
+  </ns1:Class>
+  <ns1:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/root#city">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment>AddressTown opisuje mesto alebo obec</rdfs:comment>
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto003"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/root#Address"/>
+  </ns1:DatatypeProperty>
+  <ns1:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/root#hasAddress">
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto002"/>
+    <rdfs:comment>Address of a person</rdfs:comment>
+    <rdfs:range rdf:resource="http://edamontology.org/data_auto003"/>
+  </ns1:ObjectProperty>
+  <ns1:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/root#street">
+    <rdfs:comment>AddressStreet určuje názov ulice</rdfs:comment>
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto003"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/root#Address"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </ns1:DatatypeProperty>
+  <ns1:Class rdf:about="http://edamontology.org/data_auto005">
+    <rdfs:label>ListOfGroceryShoppings</rdfs:label>
+    <ns3:hasDefinition>Auto-definition for ListOfGroceryShoppings</ns3:hasDefinition>
+    <ns2:created_in>dev:2025-04-22</ns2:created_in>
+    <rdfs:comment>ListOfGroceryShopping predstavuje kompletný zoznam (históriu) všetkých nákupov potravín daného užívateľa.</rdfs:comment>
+  </ns1:Class>
+  <ns1:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/root#dateOfBirth">
+    <rdfs:comment>DateOfBirth reprezentuje dátum narodenia užívateľa</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto002"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/root#Person"/>
+  </ns1:DatatypeProperty>
+  <ns1:Class rdf:about="http://edamontology.org/data_auto014">
+    <rdfs:label>QASentiment</rdfs:label>
+    <ns3:hasDefinition>Auto-definition for QASentiment</ns3:hasDefinition>
+    <ns2:created_in>dev:2025-04-22</ns2:created_in>
+    <ns1:equivalentClass>
+      <ns1:Class rdf:nodeID="Na96a72db3c4f40e7b43c05fdb29dc9c9">
+        <ns1:oneOf rdf:nodeID="Nef35615d28af472594e51f9036902b89"/>
+      </ns1:Class>
+    </ns1:equivalentClass>
+  </ns1:Class>
+  <ns1:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/root#hnedá"/>
+  <ns1:Class rdf:about="http://edamontology.org/data_auto010">
+    <rdfs:label>GPSPoint</rdfs:label>
+    <ns3:hasDefinition>Auto-definition for GPSPoint</ns3:hasDefinition>
+    <ns2:created_in>dev:2025-04-22</ns2:created_in>
+    <rdfs:comment>A GPS point with coordinates and timestamp</rdfs:comment>
   </ns1:Class>
   <ns1:Class rdf:about="http://edamontology.org/data_auto002">
-    <rdfs:label>createdAt</rdfs:label>
-    <oboInOwl:hasDefinition>Dátum a čas vytvorenia záznamu</oboInOwl:hasDefinition>
-    <edam:created_in>dev:2025-04-22</edam:created_in>
+    <rdfs:label>Person</rdfs:label>
+    <ns3:hasDefinition>Auto-definition for Person</ns3:hasDefinition>
+    <ns2:created_in>dev:2025-04-22</ns2:created_in>
+    <rdfs:subClassOf>
+      <ns1:Restriction rdf:nodeID="N2d7211e66acc49f3b7dc4053f19b3298">
+        <ns1:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</ns1:cardinality>
+        <ns1:onProperty rdf:resource="http://www.semanticweb.org/ontologies/root#hasAddress"/>
+      </ns1:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <ns1:Restriction rdf:nodeID="N05a4838291324872838f522c39d963bd">
+        <ns1:onProperty rdf:resource="http://www.semanticweb.org/ontologies/root#firstName"/>
+        <ns1:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</ns1:cardinality>
+      </ns1:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <ns1:Restriction rdf:nodeID="Ndcb6c9caa8254d64b028ce3d003a7f64">
+        <ns1:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</ns1:cardinality>
+        <ns1:onProperty rdf:resource="http://www.semanticweb.org/ontologies/root#lastName"/>
+      </ns1:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <ns1:Restriction rdf:nodeID="Nab429a48d9aa4ecca6ed5c29a645101d">
+        <ns1:onProperty rdf:resource="http://www.semanticweb.org/ontologies/root#dateOfBirth"/>
+        <ns1:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</ns1:cardinality>
+      </ns1:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment>Osoba definovaná registračnými údajmi</rdfs:comment>
   </ns1:Class>
-  <ns1:Class rdf:about="http://edamontology.org/data_auto008">
-    <rdfs:label>rawQA</rdfs:label>
-    <oboInOwl:hasDefinition>Obsahuje údaje o sentimentálnej analýze prebiehajúcej konverzácie</oboInOwl:hasDefinition>
-    <edam:created_in>dev:2025-04-22</edam:created_in>
-  </ns1:Class>
-  <ns1:Class rdf:about="http://edamontology.org/data_auto009">
-    <rdfs:label>positionTracking</rdfs:label>
-    <oboInOwl:hasDefinition>PositionTracking predstavuje sledovanie polohy užívateľa pomocou GPS údajov. Vzťah k užívateľovi spočíva v možnosti zaznamenávať a analyzovať jeho pohybové aktivity, čo môže byť využité napríklad v navigačných aplikáciách, športových aktivitách alebo bezpečnostných systémoch.</oboInOwl:hasDefinition>
-    <edam:created_in>dev:2025-04-22</edam:created_in>
-  </ns1:Class>
+  <ns1:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/root#pozitívny"/>
   <ns1:Class rdf:about="http://edamontology.org/data_auto007">
-    <rdfs:label>listOfGroceryShoppings</rdfs:label>
-    <oboInOwl:hasDefinition>ListOfGroceryShopping predstavuje kompletný zoznam (históriu) všetkých nákupov potravín daného užívateľa. Vzťah k užívateľovi je založený na ucelenom prehľade o jeho spotrebných návykoch, ktorý môže využiť pri tvorbe rodinného rozpočtu alebo organizácii nákupov. Umožňuje spätne dohľadať konkrétne dátumy, prípadne aj miesta a sumy (ak sa ukladajú). Pre užívateľa je to praktický nástroj na správu financií a plánovanie domácich zásob potravín.</oboInOwl:hasDefinition>
-    <edam:created_in>dev:2025-04-22</edam:created_in>
-  </ns1:Class>
-  <ns1:Class rdf:about="http://edamontology.org/data_auto005">
-    <rdfs:label>relationships</rdfs:label>
-    <edam:created_in>dev:2025-04-22</edam:created_in>
-  </ns1:Class>
-  <ns1:Class rdf:about="http://edamontology.org/data_auto001">
-    <rdfs:label>userUuid</rdfs:label>
-    <oboInOwl:hasDefinition>Jedinečný identifikátor používateľa</oboInOwl:hasDefinition>
-    <edam:created_in>dev:2025-04-22</edam:created_in>
+    <rdfs:label>GroceryItem</rdfs:label>
+    <ns3:hasDefinition>Auto-definition for GroceryItem</ns3:hasDefinition>
+    <ns2:created_in>dev:2025-04-22</ns2:created_in>
+    <rdfs:comment>An item in a grocery shopping</rdfs:comment>
   </ns1:Class>
   <ns1:Class rdf:about="http://edamontology.org/data_auto006">
-    <rdfs:label>biometricData</rdfs:label>
-    <edam:created_in>dev:2025-04-22</edam:created_in>
+    <rdfs:label>GroceryShopping</rdfs:label>
+    <ns3:hasDefinition>Auto-definition for GroceryShopping</ns3:hasDefinition>
+    <ns2:created_in>dev:2025-04-22</ns2:created_in>
+    <rdfs:comment>A grocery shopping instance</rdfs:comment>
   </ns1:Class>
-  <ns1:Class rdf:about="http://edamontology.org/data_auto004">
-    <rdfs:label>currentUser</rdfs:label>
-    <oboInOwl:hasDefinition>Aktuálny používateľ definovaný registračnými údajmi</oboInOwl:hasDefinition>
-    <edam:created_in>dev:2025-04-22</edam:created_in>
+  <ns1:Class rdf:about="http://edamontology.org/data_auto016">
+    <rdfs:label>PropertyType</rdfs:label>
+    <ns3:hasDefinition>Auto-definition for PropertyType</ns3:hasDefinition>
+    <ns2:created_in>dev:2025-04-22</ns2:created_in>
+    <ns1:equivalentClass>
+      <ns1:Class rdf:nodeID="N853fac5ebfae4613b539d06cb23ce1f4">
+        <ns1:oneOf rdf:nodeID="N121882834e304aa9b0e6e4d71b2f06fe"/>
+      </ns1:Class>
+    </ns1:equivalentClass>
   </ns1:Class>
-  <ns1:Class rdf:about="http://edamontology.org/data_auto010">
-    <rdfs:label>nehnutelnosti</rdfs:label>
-    <oboInOwl:hasDefinition>Zoznam nehnuteľností používateľa</oboInOwl:hasDefinition>
-    <edam:created_in>dev:2025-04-22</edam:created_in>
+  <ns1:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/root#Byt"/>
+  <ns1:Class rdf:about="http://edamontology.org/data_auto008">
+    <rdfs:label>RawQA</rdfs:label>
+    <ns3:hasDefinition>Auto-definition for RawQA</ns3:hasDefinition>
+    <ns2:created_in>dev:2025-04-22</ns2:created_in>
+    <rdfs:comment>Obsahuje údaje o sentimentálnej analýze prebiehajúcej konverzácie</rdfs:comment>
   </ns1:Class>
+  <ns1:Class rdf:about="http://edamontology.org/data_auto011">
+    <rdfs:label>Nehnutelnost</rdfs:label>
+    <ns3:hasDefinition>Auto-definition for Nehnutelnost</ns3:hasDefinition>
+    <ns2:created_in>dev:2025-04-22</ns2:created_in>
+    <rdfs:comment>Nehnuteľnosť definovaná schémou</rdfs:comment>
+  </ns1:Class>
+  <ns1:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/root#Sklad"/>
+  <ns1:Class rdf:about="http://edamontology.org/data_auto009">
+    <rdfs:label>PositionTracking</rdfs:label>
+    <ns3:hasDefinition>Auto-definition for PositionTracking</ns3:hasDefinition>
+    <ns2:created_in>dev:2025-04-22</ns2:created_in>
+    <rdfs:comment>PositionTracking predstavuje sledovanie polohy užívateľa pomocou GPS údajov.</rdfs:comment>
+  </ns1:Class>
+  <ns1:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/root#modrá"/>
+  <ns1:Class rdf:about="http://edamontology.org/data_auto001">
+    <rdfs:label>Root</rdfs:label>
+    <ns3:hasDefinition>Auto-definition for Root</ns3:hasDefinition>
+    <ns2:created_in>dev:2025-04-22</ns2:created_in>
+    <rdfs:subClassOf>
+      <ns1:Restriction rdf:nodeID="Ncba83bf697ca44bf839c91bbc629020e">
+        <ns1:onProperty rdf:resource="http://www.semanticweb.org/ontologies/root#userUuid"/>
+        <ns1:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</ns1:cardinality>
+      </ns1:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <ns1:Restriction rdf:nodeID="N5ea590ddf46d48fdba005e913a93470d">
+        <ns1:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</ns1:cardinality>
+        <ns1:onProperty rdf:resource="http://www.semanticweb.org/ontologies/root#hasCurrentUser"/>
+      </ns1:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <ns1:Restriction rdf:nodeID="Na312056b1a3b4610bdfc73054c48559c">
+        <ns1:onProperty rdf:resource="http://www.semanticweb.org/ontologies/root#updatedAt"/>
+        <ns1:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</ns1:cardinality>
+      </ns1:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <ns1:Restriction rdf:nodeID="Ndc56c98028f6445cb9a5646c18cad833">
+        <ns1:onProperty rdf:resource="http://www.semanticweb.org/ontologies/root#createdAt"/>
+        <ns1:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</ns1:cardinality>
+      </ns1:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment>Root object representing the main data structure</rdfs:comment>
+  </ns1:Class>
+  <ns1:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/root#Garáž"/>
+  <ns1:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/root#Vila"/>
+  <ns1:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/root#createdAt">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto001"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/root#Root"/>
+    <rdfs:comment>Dátum a čas vytvorenia záznamu</rdfs:comment>
+  </ns1:DatatypeProperty>
+  <ns1:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/root#Apartmán"/>
+  <ns1:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/root#userUuid">
+    <rdfs:comment>Jedinečný identifikátor používateľa</rdfs:comment>
+    <rdfs:domain rdf:resource="http://edamontology.org/data_auto001"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/root#Root"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </ns1:DatatypeProperty>
+  <ns1:Class rdf:about="http://edamontology.org/data_auto012">
+    <rdfs:label>EyeColor</rdfs:label>
+    <ns3:hasDefinition>Auto-definition for EyeColor</ns3:hasDefinition>
+    <ns2:created_in>dev:2025-04-22</ns2:created_in>
+    <ns1:equivalentClass>
+      <ns1:Class rdf:nodeID="Nf8f0347d61824b8883ba637df5d48cc9">
+        <ns1:oneOf rdf:nodeID="Ne95b07eb69d74a639d32e844d0de6b1e"/>
+      </ns1:Class>
+    </ns1:equivalentClass>
+  </ns1:Class>
+  <ns1:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/root#zelená"/>
+  <ns1:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/root#Iné"/>
+  <ns1:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/root#mix"/>
+  <ns1:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/root#sivá"/>
+  <ns1:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/root#neutrálny"/>
+  <ns1:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/root#negatívny"/>
+  <ns1:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/root#KomerčnáBudova"/>
+  <ns1:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/root#RodinnýDom"/>
 </rdf:RDF>
