@@ -1,0 +1,283 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/object/vehicle/v1.0.0/helicopter.json",
+  "title": "Helicopter Object – Verzia 1.0.0",
+  "description": "Predpis pre objekt typu vrtuľník vrátane imatrikulácie a posádky s oprávnením. Každé pole má presný popis, všetky nepovinné polia podporujú null.",
+  "type": "object",
+  "required": [
+    "uid",
+    "name",
+    "model_name",
+    "model_year",
+    "serial_number",
+    "registration_number",
+    "privacy_level",
+    "rotor_count",
+    "engine_type",
+    "fuel_type",
+    "transmission_type",
+    "acquisition_date",
+    "acquisition_method",
+    "acquisition_price",
+    "flight_hours_log",
+    "crew",
+    "free_text",
+    "documents",
+    "official_owner_uid",
+    "ultimate_beneficial_owner_uid",
+    "financial_obligation_uid"
+  ],
+  "properties": {
+    "uid": {
+      "type": "string",
+      "description": "Unikátny identifikátor objektu v systéme."
+    },
+    "name": {
+      "type": "string",
+      "description": "Ľudský názov vrtuľníka, ktorý mu používateľ priradí."
+    },
+    "privacy_level": {
+      "type": "string",
+      "enum": [
+        "private",
+        "public",
+        "shared"
+      ],
+      "default": "private",
+      "description": "Úroveň viditeľnosti objektu."
+    },
+    "sharing_rules": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "description": "Zoznam UID osôb alebo komunít, ktoré majú prístup k objektu (ak privacy_level = 'shared').",
+      "items": {
+        "type": "string"
+      }
+    },
+    "model_name": {
+      "type": "string",
+      "description": "Model vrtuľníka (napr. 'Airbus H130')."
+    },
+    "model_year": {
+      "type": "integer",
+      "description": "Rok výroby."
+    },
+    "serial_number": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Výrobné číslo alebo tail number (napr. OM-XYZ)."
+    },
+    "registration_number": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Imatrikulačné číslo (napr. OK-RDS)."
+    },
+    "rotor_count": {
+      "type": "integer",
+      "description": "Počet hlavných rotorov (typicky 1)."
+    },
+    "engine_type": {
+      "type": "string",
+      "enum": [
+        "turboshaft",
+        "piston",
+        "electric"
+      ],
+      "description": "Typ motora."
+    },
+    "fuel_type": {
+      "type": "string",
+      "enum": [
+        "jet_a1",
+        "avgas",
+        "electric"
+      ],
+      "description": "Používaný typ paliva."
+    },
+    "transmission_type": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "automatic"
+      ],
+      "description": "Typ prevodového systému."
+    },
+    "acquisition_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date",
+      "description": "Dátum nadobudnutia."
+    },
+    "acquisition_method": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "purchase",
+        "lease",
+        "gift",
+        "inheritance"
+      ],
+      "description": "Spôsob nadobudnutia."
+    },
+    "acquisition_price": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Kúpna cena. Ak darované, môže byť null.",
+      "properties": {
+        "amount": {
+          "type": "number"
+        },
+        "currency": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "amount",
+        "currency"
+      ]
+    },
+    "flight_hours_log": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "description": "Záznam nalietaných hodín s časom.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "hours": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "timestamp",
+          "hours"
+        ]
+      }
+    },
+    "crew": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "description": "Zoznam členov posádky s oprávnením lietať/riadiť tento vrtuľník.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "person_uid": {
+            "type": "string",
+            "description": "UID osoby (napr. pilot, kopilot)."
+          },
+          "role": {
+            "type": "string",
+            "description": "Rola na palube – pilot, kopilot, inštruktor..."
+          },
+          "valid_until": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date",
+            "description": "Dátum platnosti oprávnenia."
+          }
+        },
+        "required": [
+          "person_uid",
+          "role"
+        ]
+      }
+    },
+    "official_owner_uid": {
+      "type": "string",
+      "description": "UID oficiálneho vlastníka."
+    },
+    "ultimate_beneficial_owner_uid": {
+      "type": "string",
+      "description": "UID konečného užívateľa výhod (UBO)."
+    },
+    "financial_obligation_uid": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "UID záväzku (napr. leasingová zmluva)."
+    },
+    "free_text": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Ľubovoľné poznámky, ktoré sa nedajú zatriediť."
+    },
+    "documents": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "description": "Zoznam dokumentov. Každý dokument má typ, MIME, názov a popis.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "storage_link": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uri"
+          },
+          "related_to_uid": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "type": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "mime_type": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "file_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "storage_link",
+          "related_to_uid",
+          "type"
+        ]
+      }
+    }
+  }
+}

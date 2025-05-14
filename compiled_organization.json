@@ -1,0 +1,217 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/object/entity/v1.0.1/organization.json",
+  "title": "Organization Object – Verzia 1.0.1",
+  "description": "Predpis pre neobchodné organizácie s použitím referencií na spoločné objekty.",
+  "allOf": [
+    {
+      "type": "object",
+      "description": "Základný objekt, ktorý obsahuje spoločné atribúty pre všetky typy objektov",
+      "required": [
+        "uid",
+        "name",
+        "privacy_level",
+        "free_text"
+      ],
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Unikátny identifikátor objektu v systéme."
+        },
+        "name": {
+          "type": "string",
+          "description": "Ľudské pomenovanie objektu."
+        },
+        "privacy_level": {
+          "type": "string",
+          "enum": [
+            "private",
+            "public",
+            "shared"
+          ],
+          "default": "private",
+          "description": "Režim zdieľania objektu."
+        },
+        "sharing_rules": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Zoznam UID osôb alebo skupín, ktoré majú prístup (ak režim je 'shared').",
+          "items": {
+            "type": "string"
+          }
+        },
+        "free_text": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Ľubovoľné poznámky mimo štruktúry."
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "org_type",
+        "jurisdiction_country",
+        "registered_office",
+        "roles",
+        "related_objects"
+      ],
+      "properties": {
+        "org_type": {
+          "type": "string",
+          "enum": [
+            "government",
+            "municipality",
+            "foundation",
+            "association",
+            "educational",
+            "nonprofit",
+            "other"
+          ],
+          "description": "Typ organizácie – úrad, nadácia, obec, škola atď."
+        },
+        "jurisdiction_country": {
+          "type": "string",
+          "description": "Krajina, kde je organizácia zaregistrovaná alebo pôsobí."
+        },
+        "registered_office": {
+          "type": "object",
+          "description": "Adresa alebo sídlo",
+          "required": [
+            "street",
+            "city",
+            "postal_code",
+            "country"
+          ],
+          "properties": {
+            "street": {
+              "type": "string",
+              "description": "Ulica a číslo"
+            },
+            "city": {
+              "type": "string",
+              "description": "Mesto alebo obec"
+            },
+            "postal_code": {
+              "type": "string",
+              "description": "PSČ"
+            },
+            "country": {
+              "type": "string",
+              "description": "Kód krajiny (napr. 'SK', 'CZ')"
+            },
+            "region": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Kraj alebo región (nepovinné)"
+            }
+          }
+        },
+        "parent_uid": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "UID nadradenej organizácie, ak existuje (napr. ministerstvo pre úrad)."
+        },
+        "roles": {
+          "type": "array",
+          "description": "Zoznam osôb alebo iných UID, ktoré majú v organizácii funkciu (napr. predseda, správca).",
+          "items": {
+            "type": "object",
+            "properties": {
+              "person_uid": {
+                "type": "string"
+              },
+              "role_title": {
+                "type": "string"
+              },
+              "since": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date"
+              }
+            },
+            "required": [
+              "person_uid",
+              "role_title"
+            ]
+          }
+        },
+        "related_objects": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Zoznam UID objektov, s ktorými má organizácia významný vzťah (spravuje, prevádzkuje, vlastní).",
+          "items": {
+            "type": "string"
+          }
+        },
+        "documents": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Zoznam dokumentov súvisiacich s objektom.",
+          "items": {
+            "type": "object",
+            "description": "Dokument súvisiaci s objektom",
+            "properties": {
+              "storage_link": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uri"
+              },
+              "related_to_uid": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "type": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "mime_type": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "file_name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "storage_link",
+              "related_to_uid",
+              "type"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,248 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/object/vehicle/v1.0.1/privatejet.json",
+  "title": "Private Jet Object – Verzia 1.0.1",
+  "description": "Predpis pre objekt typu súkromné lietadlo s použitím referencií na spoločné objekty.",
+  "allOf": [
+    {
+      "type": "object",
+      "description": "Základný objekt, ktorý obsahuje spoločné atribúty pre všetky typy objektov",
+      "required": [
+        "uid",
+        "name",
+        "privacy_level",
+        "free_text"
+      ],
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Unikátny identifikátor objektu v systéme."
+        },
+        "name": {
+          "type": "string",
+          "description": "Ľudské pomenovanie objektu."
+        },
+        "privacy_level": {
+          "type": "string",
+          "enum": [
+            "private",
+            "public",
+            "shared"
+          ],
+          "default": "private",
+          "description": "Režim zdieľania objektu."
+        },
+        "sharing_rules": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Zoznam UID osôb alebo skupín, ktoré majú prístup (ak režim je 'shared').",
+          "items": {
+            "type": "string"
+          }
+        },
+        "free_text": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Ľubovoľné poznámky mimo štruktúry."
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "model_name",
+        "model_year",
+        "registration_number",
+        "registration_country",
+        "operator_uid",
+        "ultimate_beneficial_owner_uid",
+        "official_owner_uid",
+        "engine_class",
+        "crew",
+        "crew_count",
+        "has_flight_attendant",
+        "passenger_capacity",
+        "luggage_volume_m3",
+        "zone_count",
+        "flight_hours_log",
+        "financial_obligation_uid"
+      ],
+      "properties": {
+        "model_name": {
+          "type": "string",
+          "description": "Názov modelu lietadla (napr. Gulfstream G650)."
+        },
+        "model_year": {
+          "type": "integer",
+          "description": "Rok výroby."
+        },
+        "registration_number": {
+          "type": "string",
+          "description": "Imatrikulačná značka lietadla (napr. OK-JET)."
+        },
+        "registration_country": {
+          "type": "string",
+          "description": "Kód krajiny registrácie (napr. 'SK', 'MT')."
+        },
+        "operator_uid": {
+          "type": "string",
+          "description": "UID subjektu, ktorý prevádzkuje lietadlo (napr. ABS Jet)."
+        },
+        "ultimate_beneficial_owner_uid": {
+          "type": "string",
+          "description": "UID skutočného vlastníka (UBO)."
+        },
+        "official_owner_uid": {
+          "type": "string",
+          "description": "UID právneho vlastníka (firma, holding)."
+        },
+        "engine_class": {
+          "type": "string",
+          "enum": [
+            "jet",
+            "turboprop"
+          ],
+          "description": "Typ pohonu – jet (prúdový) alebo turboprop (turbovrtuľový)."
+        },
+        "crew": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Zoznam posádky (pilot, kopilot, inštruktor...)",
+          "items": {
+            "type": "object",
+            "properties": {
+              "person_uid": {
+                "type": "string"
+              },
+              "role": {
+                "type": "string"
+              },
+              "valid_until": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date"
+              }
+            },
+            "required": [
+              "person_uid",
+              "role"
+            ]
+          }
+        },
+        "crew_count": {
+          "type": "integer",
+          "description": "Celkový počet členov posádky."
+        },
+        "has_flight_attendant": {
+          "type": "boolean",
+          "description": "Obsahuje posádku typu cabin crew / steward?"
+        },
+        "passenger_capacity": {
+          "type": "integer",
+          "description": "Počet miest pre cestujúcich."
+        },
+        "luggage_volume_m3": {
+          "type": "number",
+          "description": "Objem batožinového priestoru v m³."
+        },
+        "zone_count": {
+          "type": "integer",
+          "description": "Počet oddelených zón (salóniky, WC, posádka...)."
+        },
+        "flight_hours_log": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Záznam o nalietaných hodinách s časom.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "timestamp": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "hours": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "timestamp",
+              "hours"
+            ]
+          }
+        },
+        "financial_obligation_uid": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "UID záväzku súvisiaceho s financovaním lietadla."
+        },
+        "documents": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Zoznam dokumentov súvisiacich s objektom.",
+          "items": {
+            "type": "object",
+            "description": "Dokument súvisiaci s objektom",
+            "properties": {
+              "storage_link": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uri"
+              },
+              "related_to_uid": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "type": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "mime_type": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "file_name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "storage_link",
+              "related_to_uid",
+              "type"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

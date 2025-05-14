@@ -1,0 +1,238 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/object/entity/v1.0.1/company.json",
+  "title": "Company Object – Verzia 1.0.1",
+  "description": "Predpis pre obchodnú spoločnosť s použitím referencií na spoločné objekty.",
+  "allOf": [
+    {
+      "type": "object",
+      "description": "Základný objekt, ktorý obsahuje spoločné atribúty pre všetky typy objektov",
+      "required": [
+        "uid",
+        "name",
+        "privacy_level",
+        "free_text"
+      ],
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Unikátny identifikátor objektu v systéme."
+        },
+        "name": {
+          "type": "string",
+          "description": "Ľudské pomenovanie objektu."
+        },
+        "privacy_level": {
+          "type": "string",
+          "enum": [
+            "private",
+            "public",
+            "shared"
+          ],
+          "default": "private",
+          "description": "Režim zdieľania objektu."
+        },
+        "sharing_rules": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Zoznam UID osôb alebo skupín, ktoré majú prístup (ak režim je 'shared').",
+          "items": {
+            "type": "string"
+          }
+        },
+        "free_text": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Ľubovoľné poznámky mimo štruktúry."
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "jurisdiction_country",
+        "legal_form",
+        "registration_number",
+        "registered_office",
+        "incorporation_date",
+        "registered_capital",
+        "owners",
+        "related_objects"
+      ],
+      "properties": {
+        "jurisdiction_country": {
+          "type": "string",
+          "description": "Kód krajiny, kde je spoločnosť založená (napr. 'SK', 'CZ')."
+        },
+        "legal_form": {
+          "type": "string",
+          "enum": [
+            "s.r.o.",
+            "a.s.",
+            "k.s.",
+            "v.o.s.",
+            "družstvo",
+            "SE",
+            "iné"
+          ],
+          "description": "Právna forma spoločnosti (napr. spoločnosť s ručením obmedzeným, akciová spoločnosť...)."
+        },
+        "registration_number": {
+          "type": "string",
+          "description": "IČO alebo iné identifikačné číslo."
+        },
+        "registered_office": {
+          "type": "object",
+          "description": "Adresa alebo sídlo",
+          "required": [
+            "street",
+            "city",
+            "postal_code",
+            "country"
+          ],
+          "properties": {
+            "street": {
+              "type": "string",
+              "description": "Ulica a číslo"
+            },
+            "city": {
+              "type": "string",
+              "description": "Mesto alebo obec"
+            },
+            "postal_code": {
+              "type": "string",
+              "description": "PSČ"
+            },
+            "country": {
+              "type": "string",
+              "description": "Kód krajiny (napr. 'SK', 'CZ')"
+            },
+            "region": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Kraj alebo región (nepovinné)"
+            }
+          }
+        },
+        "incorporation_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Dátum zápisu do registra."
+        },
+        "registered_capital": {
+          "type": "object",
+          "description": "Základné imanie spoločnosti zapísané v registri.",
+          "properties": {
+            "amount": {
+              "type": "number"
+            },
+            "currency": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "amount",
+            "currency"
+          ]
+        },
+        "owners": {
+          "type": "array",
+          "description": "Zoznam vlastníkov s podielmi",
+          "items": {
+            "type": "object",
+            "properties": {
+              "owner_uid": {
+                "type": "string"
+              },
+              "share_percent": {
+                "type": "number"
+              },
+              "since": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date"
+              }
+            },
+            "required": [
+              "owner_uid",
+              "share_percent"
+            ]
+          }
+        },
+        "related_objects": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Zoznam objektov (UID), ku ktorým má spoločnosť akýkoľvek významný vzťah (napr. vlastníctvo, leasing, prevádzkovanie). Konkrétny typ vzťahu je popísaný pri samotnom objekte.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "documents": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Zoznam dokumentov súvisiacich s objektom.",
+          "items": {
+            "type": "object",
+            "description": "Dokument súvisiaci s objektom",
+            "properties": {
+              "storage_link": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uri"
+              },
+              "related_to_uid": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "type": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "mime_type": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "file_name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "storage_link",
+              "related_to_uid",
+              "type"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/object/living/v1.0.0/pet.json",
+  "title": "Pet Object – Verzia 1.0.0",
+  "description": "Predpis pre domáce zvieratá – individuálne vedené zvieratá vo vlastníctve osoby alebo organizácie. Obsahuje identifikáciu, umiestnenie, starostlivosť a dokumenty.",
+  "type": "object",
+  "required": [
+    "uid",
+    "name",
+    "species",
+    "birth_date",
+    "ultimate_beneficial_owner_uid",
+    "official_owner_uid",
+    "location_uid",
+    "has_veterinary_care",
+    "identifiers",
+    "documents",
+    "free_text"
+  ],
+  "properties": {
+    "uid": {
+      "type": "string",
+      "description": "Unikátny identifikátor zvieraťa."
+    },
+    "name": {
+      "type": "string",
+      "description": "Meno, ktoré zvieraťu priradil človek."
+    },
+    "species": {
+      "type": "string",
+      "enum": [
+        "dog",
+        "cat",
+        "horse",
+        "cow",
+        "sheep",
+        "pig",
+        "goat",
+        "rabbit",
+        "other"
+      ],
+      "description": "Druh zvieraťa."
+    },
+    "breed": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Plemeno zvieraťa (ak je známe)."
+    },
+    "birth_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Dátum narodenia."
+    },
+    "location_uid": {
+      "type": "string",
+      "description": "UID miesta, kde sa zviera nachádza (napr. dom, farma, chov)."
+    },
+    "current_position": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "GPS poloha (napr. podľa sledovacieho obojku).",
+      "properties": {
+        "lat": {
+          "type": "number"
+        },
+        "lon": {
+          "type": "number"
+        },
+        "timestamp": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "lat",
+        "lon"
+      ]
+    },
+    "has_veterinary_care": {
+      "type": "boolean",
+      "description": "Je zviera pod veterinárnym dohľadom?"
+    },
+    "veterinarian_uid": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "UID veterinára alebo kliniky."
+    },
+    "ultimate_beneficial_owner_uid": {
+      "type": "string",
+      "description": "UID konečného vlastníka zvieraťa."
+    },
+    "official_owner_uid": {
+      "type": "string",
+      "description": "UID právneho vlastníka (napr. firma)."
+    },
+    "identifiers": {
+      "type": "array",
+      "description": "Zoznam identifikátorov – čip, tetovanie, obojok.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "documents": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "description": "Zoznam dokumentov (očkovací preukaz, čipovacie údaje...).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "storage_link": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uri"
+          },
+          "related_to_uid": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "type": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "mime_type": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "file_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "storage_link",
+          "related_to_uid",
+          "type"
+        ]
+      }
+    },
+    "free_text": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Ľubovoľné poznámky o zvierati."
+    }
+  }
+}

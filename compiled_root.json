@@ -1,0 +1,2858 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "root_datamap.json",
+  "title": "Root Schema – Verzia 1.0",
+  "description": "Koreňová schéma, ktorá definuje hierarchickú štruktúru všetkých objektov v systéme. Každá kategória obsahuje pole objektov príslušného typu.",
+  "type": "object",
+  "properties": {
+    "object": {
+      "type": "object",
+      "description": "Hlavná kategória všetkých objektov v systéme.",
+      "properties": {
+        "vehicle": {
+          "type": "object",
+          "description": "Kategória dopravných prostriedkov.",
+          "properties": {
+            "car": {
+              "type": "array",
+              "description": "Zoznam áut.",
+              "items": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "$id": "schemas/object/vehicle/v1.0.1/car.json",
+                "title": "Car Object – Verzia 1.0.1",
+                "description": "Predpis pre objekt typu auto s použitím referencií na spoločné objekty.",
+                "allOf": [
+                  {
+                    "type": "object",
+                    "description": "Základný objekt, ktorý obsahuje spoločné atribúty pre všetky typy objektov",
+                    "required": [
+                      "uid",
+                      "name",
+                      "privacy_level",
+                      "free_text"
+                    ],
+                    "properties": {
+                      "uid": {
+                        "type": "string",
+                        "description": "Unikátny identifikátor objektu v systéme."
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Ľudské pomenovanie objektu."
+                      },
+                      "privacy_level": {
+                        "type": "string",
+                        "enum": [
+                          "private",
+                          "public",
+                          "shared"
+                        ],
+                        "default": "private",
+                        "description": "Režim zdieľania objektu."
+                      },
+                      "sharing_rules": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "description": "Zoznam UID osôb alebo skupín, ktoré majú prístup (ak režim je 'shared').",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "free_text": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Ľubovoľné poznámky mimo štruktúry."
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      "model_name",
+                      "model_year",
+                      "VIN",
+                      "body_style",
+                      "door_count",
+                      "colour_primary",
+                      "engine_type",
+                      "displacement_cc",
+                      "fuel_type",
+                      "transmission_type",
+                      "gear_count",
+                      "drive_layout",
+                      "acquisition_date",
+                      "acquisition_method",
+                      "acquisition_price",
+                      "mileage_log",
+                      "registration_plate",
+                      "registration_country",
+                      "official_owner_uid",
+                      "ultimate_beneficial_owner_uid",
+                      "financial_obligation_uid"
+                    ],
+                    "properties": {
+                      "model_name": {
+                        "type": "string",
+                        "description": "Obchodný názov modelu auta."
+                      },
+                      "model_year": {
+                        "type": "integer",
+                        "description": "Rok výroby alebo modelový rok auta."
+                      },
+                      "VIN": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Vehicle Identification Number – jedinečné číslo auta."
+                      },
+                      "registration_plate": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Poznávacia značka vozidla (napr. 'BL 123XY')."
+                      },
+                      "registration_country": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Kód krajiny, kde je vozidlo registrované (napr. 'SK', 'DE', 'IT')."
+                      },
+                      "body_style": {
+                        "type": "string",
+                        "enum": [
+                          "SUV",
+                          "hatchback",
+                          "sedan",
+                          "pickup",
+                          "wagon",
+                          "coupe",
+                          "convertible"
+                        ],
+                        "description": "Typ karosérie auta."
+                      },
+                      "door_count": {
+                        "type": "integer",
+                        "description": "Počet dverí."
+                      },
+                      "colour_primary": {
+                        "type": "string",
+                        "description": "Hlavná farba karosérie."
+                      },
+                      "engine_type": {
+                        "type": "string",
+                        "enum": [
+                          "ICE",
+                          "hybrid",
+                          "plug-in hybrid",
+                          "BEV",
+                          "FCEV"
+                        ],
+                        "description": "Typ pohonu auta."
+                      },
+                      "displacement_cc": {
+                        "type": "integer",
+                        "description": "Objem motora v cm³."
+                      },
+                      "fuel_type": {
+                        "type": "string",
+                        "enum": [
+                          "diesel",
+                          "petrol",
+                          "electric",
+                          "hybrid"
+                        ],
+                        "description": "Typ paliva."
+                      },
+                      "transmission_type": {
+                        "type": "string",
+                        "enum": [
+                          "manual",
+                          "automatic",
+                          "CVT",
+                          "dual-clutch"
+                        ],
+                        "description": "Typ prevodovky."
+                      },
+                      "gear_count": {
+                        "type": "integer",
+                        "description": "Počet rýchlostí."
+                      },
+                      "drive_layout": {
+                        "type": "string",
+                        "enum": [
+                          "FWD",
+                          "RWD",
+                          "AWD",
+                          "4WD"
+                        ],
+                        "description": "Typ pohonu kolies."
+                      },
+                      "acquisition_date": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "format": "date",
+                        "description": "Dátum nadobudnutia."
+                      },
+                      "acquisition_method": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "enum": [
+                          "purchase",
+                          "lease",
+                          "gift",
+                          "inheritance"
+                        ],
+                        "description": "Spôsob nadobudnutia."
+                      },
+                      "acquisition_price": {
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "description": "Kúpna cena vozidla.",
+                        "properties": {
+                          "amount": {
+                            "type": "number"
+                          },
+                          "currency": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "amount",
+                          "currency"
+                        ]
+                      },
+                      "mileage_log": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "description": "Záznamy o najazdených kilometroch.",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "timestamp": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "mileage_counter": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "timestamp",
+                            "mileage_counter"
+                          ]
+                        }
+                      },
+                      "official_owner_uid": {
+                        "type": "string",
+                        "description": "UID oficiálneho vlastníka vozidla."
+                      },
+                      "ultimate_beneficial_owner_uid": {
+                        "type": "string",
+                        "description": "UID konečného užívateľa výhod (UBO)."
+                      },
+                      "financial_obligation_uid": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "UID záväzku (napr. leasingová zmluva)."
+                      },
+                      "documents": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "description": "Zoznam dokumentov súvisiacich s objektom.",
+                        "items": {
+                          "type": "object",
+                          "description": "Dokument súvisiaci s objektom",
+                          "properties": {
+                            "storage_link": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "format": "uri"
+                            },
+                            "related_to_uid": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "type": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "mime_type": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "file_name": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "description": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "storage_link",
+                            "related_to_uid",
+                            "type"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "motorcycle": {
+              "type": "array",
+              "description": "Zoznam motoriek.",
+              "items": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "$id": "schemas/object/vehicle/v1.0.0/motorcycle.json",
+                "title": "Motorcycle Object – Verzia 1.0.0",
+                "description": "Predpis pre objekt typu motorka vrátane poznávacej značky a krajiny registrácie. Každé pole má presný popis, všetky nepovinné polia podporujú null.",
+                "type": "object",
+                "required": [
+                  "uid",
+                  "name",
+                  "model_name",
+                  "model_year",
+                  "VIN",
+                  "privacy_level",
+                  "body_style",
+                  "engine_type",
+                  "displacement_cc",
+                  "fuel_type",
+                  "transmission_type",
+                  "gear_count",
+                  "drive_layout",
+                  "acquisition_date",
+                  "acquisition_method",
+                  "acquisition_price",
+                  "mileage_log",
+                  "free_text",
+                  "documents",
+                  "official_owner_uid",
+                  "ultimate_beneficial_owner_uid",
+                  "financial_obligation_uid",
+                  "registration_plate",
+                  "registration_country"
+                ],
+                "properties": {
+                  "uid": {
+                    "type": "string",
+                    "description": "Unikátny identifikátor objektu v systéme."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Ľudský názov motocykla, ktorý mu používateľ priradí."
+                  },
+                  "privacy_level": {
+                    "type": "string",
+                    "enum": [
+                      "private",
+                      "public",
+                      "shared"
+                    ],
+                    "default": "private",
+                    "description": "Úroveň viditeľnosti objektu."
+                  },
+                  "sharing_rules": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "description": "UID osôb alebo komunít, ktoré majú prístup k objektu (ak privacy_level = 'shared').",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "model_name": {
+                    "type": "string",
+                    "description": "Modelový názov motocykla (napr. 'Harley Davidson Softtail')."
+                  },
+                  "model_year": {
+                    "type": "integer",
+                    "description": "Rok výroby motocykla."
+                  },
+                  "VIN": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Vehicle Identification Number – jedinečné číslo vozidla."
+                  },
+                  "registration_plate": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Poznávacia značka motocykla (napr. 'BA 987XY')."
+                  },
+                  "registration_country": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Kód krajiny, kde je motorka registrovaná (napr. 'SK', 'CZ')."
+                  },
+                  "body_style": {
+                    "type": "string",
+                    "enum": [
+                      "cruiser",
+                      "touring",
+                      "sport",
+                      "standard",
+                      "offroad"
+                    ],
+                    "description": "Typ rámu a karosérie motocykla."
+                  },
+                  "engine_type": {
+                    "type": "string",
+                    "enum": [
+                      "ICE",
+                      "electric",
+                      "hybrid"
+                    ],
+                    "description": "Typ pohonu (spaľovací, elektrický...)."
+                  },
+                  "displacement_cc": {
+                    "type": "integer",
+                    "description": "Objem motora v cm³."
+                  },
+                  "fuel_type": {
+                    "type": "string",
+                    "enum": [
+                      "petrol",
+                      "electric"
+                    ],
+                    "description": "Typ paliva."
+                  },
+                  "transmission_type": {
+                    "type": "string",
+                    "enum": [
+                      "manual",
+                      "automatic"
+                    ],
+                    "description": "Typ prevodovky."
+                  },
+                  "gear_count": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ],
+                    "description": "Počet prevodových stupňov."
+                  },
+                  "drive_layout": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "enum": [
+                      "chain",
+                      "belt",
+                      "shaft"
+                    ],
+                    "description": "Typ prenosu pohonu (napr. reťaz, remenica, kardan)."
+                  },
+                  "acquisition_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "format": "date",
+                    "description": "Dátum nadobudnutia motocykla."
+                  },
+                  "acquisition_method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "enum": [
+                      "purchase",
+                      "gift",
+                      "inheritance"
+                    ],
+                    "description": "Spôsob nadobudnutia."
+                  },
+                  "acquisition_price": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "description": "Cena pri nadobudnutí.",
+                    "properties": {
+                      "amount": {
+                        "type": "number"
+                      },
+                      "currency": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "amount",
+                      "currency"
+                    ]
+                  },
+                  "mileage_log": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "description": "Záznam najazdených kilometrov s časom.",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "timestamp": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "mileage_counter": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "timestamp",
+                        "mileage_counter"
+                      ]
+                    }
+                  },
+                  "official_owner_uid": {
+                    "type": "string",
+                    "description": "UID oficiálneho vlastníka (ak nie je rovnaký ako UBO)."
+                  },
+                  "ultimate_beneficial_owner_uid": {
+                    "type": "string",
+                    "description": "UID konečného vlastníka (UBO)."
+                  },
+                  "financial_obligation_uid": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "UID záväzku alebo financovania."
+                  },
+                  "free_text": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Poznámky, ktoré nepatria do štruktúrovaných polí."
+                  },
+                  "documents": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "description": "Zoznam dokumentov súvisiacich s motocyklom.",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "storage_link": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "format": "uri"
+                        },
+                        "related_to_uid": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "type": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "mime_type": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "file_name": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "storage_link",
+                        "related_to_uid",
+                        "type"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "helicopter": {
+              "type": "array",
+              "description": "Zoznam vrtuľníkov.",
+              "items": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "$id": "schemas/object/vehicle/v1.0.0/helicopter.json",
+                "title": "Helicopter Object – Verzia 1.0.0",
+                "description": "Predpis pre objekt typu vrtuľník vrátane imatrikulácie a posádky s oprávnením. Každé pole má presný popis, všetky nepovinné polia podporujú null.",
+                "type": "object",
+                "required": [
+                  "uid",
+                  "name",
+                  "model_name",
+                  "model_year",
+                  "serial_number",
+                  "registration_number",
+                  "privacy_level",
+                  "rotor_count",
+                  "engine_type",
+                  "fuel_type",
+                  "transmission_type",
+                  "acquisition_date",
+                  "acquisition_method",
+                  "acquisition_price",
+                  "flight_hours_log",
+                  "crew",
+                  "free_text",
+                  "documents",
+                  "official_owner_uid",
+                  "ultimate_beneficial_owner_uid",
+                  "financial_obligation_uid"
+                ],
+                "properties": {
+                  "uid": {
+                    "type": "string",
+                    "description": "Unikátny identifikátor objektu v systéme."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Ľudský názov vrtuľníka, ktorý mu používateľ priradí."
+                  },
+                  "privacy_level": {
+                    "type": "string",
+                    "enum": [
+                      "private",
+                      "public",
+                      "shared"
+                    ],
+                    "default": "private",
+                    "description": "Úroveň viditeľnosti objektu."
+                  },
+                  "sharing_rules": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "description": "Zoznam UID osôb alebo komunít, ktoré majú prístup k objektu (ak privacy_level = 'shared').",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "model_name": {
+                    "type": "string",
+                    "description": "Model vrtuľníka (napr. 'Airbus H130')."
+                  },
+                  "model_year": {
+                    "type": "integer",
+                    "description": "Rok výroby."
+                  },
+                  "serial_number": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Výrobné číslo alebo tail number (napr. OM-XYZ)."
+                  },
+                  "registration_number": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Imatrikulačné číslo (napr. OK-RDS)."
+                  },
+                  "rotor_count": {
+                    "type": "integer",
+                    "description": "Počet hlavných rotorov (typicky 1)."
+                  },
+                  "engine_type": {
+                    "type": "string",
+                    "enum": [
+                      "turboshaft",
+                      "piston",
+                      "electric"
+                    ],
+                    "description": "Typ motora."
+                  },
+                  "fuel_type": {
+                    "type": "string",
+                    "enum": [
+                      "jet_a1",
+                      "avgas",
+                      "electric"
+                    ],
+                    "description": "Používaný typ paliva."
+                  },
+                  "transmission_type": {
+                    "type": "string",
+                    "enum": [
+                      "manual",
+                      "automatic"
+                    ],
+                    "description": "Typ prevodového systému."
+                  },
+                  "acquisition_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "format": "date",
+                    "description": "Dátum nadobudnutia."
+                  },
+                  "acquisition_method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "enum": [
+                      "purchase",
+                      "lease",
+                      "gift",
+                      "inheritance"
+                    ],
+                    "description": "Spôsob nadobudnutia."
+                  },
+                  "acquisition_price": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "description": "Kúpna cena. Ak darované, môže byť null.",
+                    "properties": {
+                      "amount": {
+                        "type": "number"
+                      },
+                      "currency": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "amount",
+                      "currency"
+                    ]
+                  },
+                  "flight_hours_log": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "description": "Záznam nalietaných hodín s časom.",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "timestamp": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "hours": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "timestamp",
+                        "hours"
+                      ]
+                    }
+                  },
+                  "crew": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "description": "Zoznam členov posádky s oprávnením lietať/riadiť tento vrtuľník.",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "person_uid": {
+                          "type": "string",
+                          "description": "UID osoby (napr. pilot, kopilot)."
+                        },
+                        "role": {
+                          "type": "string",
+                          "description": "Rola na palube – pilot, kopilot, inštruktor..."
+                        },
+                        "valid_until": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "format": "date",
+                          "description": "Dátum platnosti oprávnenia."
+                        }
+                      },
+                      "required": [
+                        "person_uid",
+                        "role"
+                      ]
+                    }
+                  },
+                  "official_owner_uid": {
+                    "type": "string",
+                    "description": "UID oficiálneho vlastníka."
+                  },
+                  "ultimate_beneficial_owner_uid": {
+                    "type": "string",
+                    "description": "UID konečného užívateľa výhod (UBO)."
+                  },
+                  "financial_obligation_uid": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "UID záväzku (napr. leasingová zmluva)."
+                  },
+                  "free_text": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Ľubovoľné poznámky, ktoré sa nedajú zatriediť."
+                  },
+                  "documents": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "description": "Zoznam dokumentov. Každý dokument má typ, MIME, názov a popis.",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "storage_link": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "format": "uri"
+                        },
+                        "related_to_uid": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "type": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "mime_type": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "file_name": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "storage_link",
+                        "related_to_uid",
+                        "type"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "yacht": {
+              "type": "array",
+              "description": "Zoznam jácht.",
+              "items": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "$id": "schemas/object/vehicle/v1.0.1/yacht.json",
+                "title": "Yacht Object – Verzia 1.0.1",
+                "description": "Predpis pre objekt typu jachta s použitím referencií na spoločné objekty.",
+                "allOf": [
+                  {
+                    "type": "object",
+                    "description": "Základný objekt, ktorý obsahuje spoločné atribúty pre všetky typy objektov",
+                    "required": [
+                      "uid",
+                      "name",
+                      "privacy_level",
+                      "free_text"
+                    ],
+                    "properties": {
+                      "uid": {
+                        "type": "string",
+                        "description": "Unikátny identifikátor objektu v systéme."
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Ľudské pomenovanie objektu."
+                      },
+                      "privacy_level": {
+                        "type": "string",
+                        "enum": [
+                          "private",
+                          "public",
+                          "shared"
+                        ],
+                        "default": "private",
+                        "description": "Režim zdieľania objektu."
+                      },
+                      "sharing_rules": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "description": "Zoznam UID osôb alebo skupín, ktoré majú prístup (ak režim je 'shared').",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "free_text": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Ľubovoľné poznámky mimo štruktúry."
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      "official_name",
+                      "ownership_company_uid",
+                      "financial_obligation_uid",
+                      "ultimate_beneficial_owners",
+                      "flag_country",
+                      "length_m",
+                      "gross_tonnage",
+                      "crew",
+                      "crew_count",
+                      "guest_capacity",
+                      "cabin_count",
+                      "max_speed_knots",
+                      "colour_primary",
+                      "colour_secondary",
+                      "mode",
+                      "related_objects"
+                    ],
+                    "properties": {
+                      "official_name": {
+                        "type": "string",
+                        "description": "Registrovaný názov plavidla."
+                      },
+                      "ownership_company_uid": {
+                        "type": "string",
+                        "description": "UID spoločnosti, na ktorú je jachta registrovaná."
+                      },
+                      "ultimate_beneficial_owners": {
+                        "type": "array",
+                        "description": "Zoznam UID osôb, ktoré sú konečnými vlastníkmi jachty.",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "flag_country": {
+                        "type": "string",
+                        "description": "Kód krajiny vlajky pod ktorou je loď registrovaná (napr. 'MT')."
+                      },
+                      "financial_obligation_uid": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "UID záväzku spojeného s jachtou (napr. financovanie)."
+                      },
+                      "length_m": {
+                        "type": "number",
+                        "description": "Dĺžka jachty v metroch."
+                      },
+                      "gross_tonnage": {
+                        "type": "number",
+                        "description": "Hrubá tonáž (GT)."
+                      },
+                      "crew": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "description": "Zoznam členov posádky s funkciou a UID.",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "person_uid": {
+                              "type": "string"
+                            },
+                            "role": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "person_uid",
+                            "role"
+                          ]
+                        }
+                      },
+                      "crew_count": {
+                        "type": "integer",
+                        "description": "Celkový počet posádky."
+                      },
+                      "guest_capacity": {
+                        "type": "integer",
+                        "description": "Maximálny počet hostí na spanie."
+                      },
+                      "cabin_count": {
+                        "type": "integer",
+                        "description": "Počet kabín na palube."
+                      },
+                      "max_speed_knots": {
+                        "type": "number",
+                        "description": "Maximálna rýchlosť v uzloch."
+                      },
+                      "colour_primary": {
+                        "type": "string",
+                        "description": "Primárna farba jachty."
+                      },
+                      "colour_secondary": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Doplnková farba jachty."
+                      },
+                      "mode": {
+                        "type": "string",
+                        "enum": [
+                          "private",
+                          "charter"
+                        ],
+                        "description": "Režim prevádzky: súkromná alebo komerčná prevádzka."
+                      },
+                      "related_objects": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "description": "UID ďalších objektov súvisiacich s jachtou (napr. tender, podporné plavidlá).",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "documents": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "description": "Zoznam dokumentov súvisiacich s objektom.",
+                        "items": {
+                          "type": "object",
+                          "description": "Dokument súvisiaci s objektom",
+                          "properties": {
+                            "storage_link": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "format": "uri"
+                            },
+                            "related_to_uid": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "type": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "mime_type": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "file_name": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "description": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "storage_link",
+                            "related_to_uid",
+                            "type"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "privatejet": {
+              "type": "array",
+              "description": "Zoznam súkromných lietadiel.",
+              "items": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "$id": "schemas/object/vehicle/v1.0.1/privatejet.json",
+                "title": "Private Jet Object – Verzia 1.0.1",
+                "description": "Predpis pre objekt typu súkromné lietadlo s použitím referencií na spoločné objekty.",
+                "allOf": [
+                  {
+                    "type": "object",
+                    "description": "Základný objekt, ktorý obsahuje spoločné atribúty pre všetky typy objektov",
+                    "required": [
+                      "uid",
+                      "name",
+                      "privacy_level",
+                      "free_text"
+                    ],
+                    "properties": {
+                      "uid": {
+                        "type": "string",
+                        "description": "Unikátny identifikátor objektu v systéme."
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Ľudské pomenovanie objektu."
+                      },
+                      "privacy_level": {
+                        "type": "string",
+                        "enum": [
+                          "private",
+                          "public",
+                          "shared"
+                        ],
+                        "default": "private",
+                        "description": "Režim zdieľania objektu."
+                      },
+                      "sharing_rules": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "description": "Zoznam UID osôb alebo skupín, ktoré majú prístup (ak režim je 'shared').",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "free_text": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Ľubovoľné poznámky mimo štruktúry."
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      "model_name",
+                      "model_year",
+                      "registration_number",
+                      "registration_country",
+                      "operator_uid",
+                      "ultimate_beneficial_owner_uid",
+                      "official_owner_uid",
+                      "engine_class",
+                      "crew",
+                      "crew_count",
+                      "has_flight_attendant",
+                      "passenger_capacity",
+                      "luggage_volume_m3",
+                      "zone_count",
+                      "flight_hours_log",
+                      "financial_obligation_uid"
+                    ],
+                    "properties": {
+                      "model_name": {
+                        "type": "string",
+                        "description": "Názov modelu lietadla (napr. Gulfstream G650)."
+                      },
+                      "model_year": {
+                        "type": "integer",
+                        "description": "Rok výroby."
+                      },
+                      "registration_number": {
+                        "type": "string",
+                        "description": "Imatrikulačná značka lietadla (napr. OK-JET)."
+                      },
+                      "registration_country": {
+                        "type": "string",
+                        "description": "Kód krajiny registrácie (napr. 'SK', 'MT')."
+                      },
+                      "operator_uid": {
+                        "type": "string",
+                        "description": "UID subjektu, ktorý prevádzkuje lietadlo (napr. ABS Jet)."
+                      },
+                      "ultimate_beneficial_owner_uid": {
+                        "type": "string",
+                        "description": "UID skutočného vlastníka (UBO)."
+                      },
+                      "official_owner_uid": {
+                        "type": "string",
+                        "description": "UID právneho vlastníka (firma, holding)."
+                      },
+                      "engine_class": {
+                        "type": "string",
+                        "enum": [
+                          "jet",
+                          "turboprop"
+                        ],
+                        "description": "Typ pohonu – jet (prúdový) alebo turboprop (turbovrtuľový)."
+                      },
+                      "crew": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "description": "Zoznam posádky (pilot, kopilot, inštruktor...)",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "person_uid": {
+                              "type": "string"
+                            },
+                            "role": {
+                              "type": "string"
+                            },
+                            "valid_until": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "format": "date"
+                            }
+                          },
+                          "required": [
+                            "person_uid",
+                            "role"
+                          ]
+                        }
+                      },
+                      "crew_count": {
+                        "type": "integer",
+                        "description": "Celkový počet členov posádky."
+                      },
+                      "has_flight_attendant": {
+                        "type": "boolean",
+                        "description": "Obsahuje posádku typu cabin crew / steward?"
+                      },
+                      "passenger_capacity": {
+                        "type": "integer",
+                        "description": "Počet miest pre cestujúcich."
+                      },
+                      "luggage_volume_m3": {
+                        "type": "number",
+                        "description": "Objem batožinového priestoru v m³."
+                      },
+                      "zone_count": {
+                        "type": "integer",
+                        "description": "Počet oddelených zón (salóniky, WC, posádka...)."
+                      },
+                      "flight_hours_log": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "description": "Záznam o nalietaných hodinách s časom.",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "timestamp": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "hours": {
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "timestamp",
+                            "hours"
+                          ]
+                        }
+                      },
+                      "financial_obligation_uid": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "UID záväzku súvisiaceho s financovaním lietadla."
+                      },
+                      "documents": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "description": "Zoznam dokumentov súvisiacich s objektom.",
+                        "items": {
+                          "type": "object",
+                          "description": "Dokument súvisiaci s objektom",
+                          "properties": {
+                            "storage_link": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "format": "uri"
+                            },
+                            "related_to_uid": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "type": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "mime_type": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "file_name": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "description": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "storage_link",
+                            "related_to_uid",
+                            "type"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "boat": {
+              "type": "array",
+              "description": "Zoznam lodí a tendrov.",
+              "items": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "$id": "schemas/object/vehicle/v1.0.0/boat-tender.json",
+                "title": "Boat / Tender Object – Verzia 1.0.0",
+                "description": "Predpis pre menšiu loď typu DayCruiser, Tender alebo podporné plavidlo. Objekt môže byť samostatný alebo súvisiaci s inou väčšou jachtou. Zahŕňa identifikačné a technické údaje, polohu a prevádzkové informácie.",
+                "type": "object",
+                "required": [
+                  "uid",
+                  "name",
+                  "official_name",
+                  "privacy_level",
+                  "registration_number",
+                  "registration_country",
+                  "length_m",
+                  "engine_type",
+                  "max_speed_kph",
+                  "person_capacity",
+                  "has_stabilization",
+                  "manufacturer_name",
+                  "current_location",
+                  "home_port",
+                  "related_to_uid",
+                  "financial_obligation_uid",
+                  "documents",
+                  "free_text"
+                ],
+                "properties": {
+                  "uid": {
+                    "type": "string",
+                    "description": "Unikátny identifikátor člna alebo tendera."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Ľudské meno lode (napr. 'Leonardo Tender')."
+                  },
+                  "official_name": {
+                    "type": "string",
+                    "description": "Registrovaný názov plavidla."
+                  },
+                  "privacy_level": {
+                    "type": "string",
+                    "enum": [
+                      "private",
+                      "public",
+                      "shared"
+                    ],
+                    "default": "private",
+                    "description": "Režim zdieľania objektu."
+                  },
+                  "sharing_rules": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "description": "Zoznam UID osôb alebo skupín, ktoré majú prístup (ak privacy_level = 'shared').",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "registration_number": {
+                    "type": "string",
+                    "description": "Registračné číslo plavidla (napr. MT-1234-DC)."
+                  },
+                  "registration_country": {
+                    "type": "string",
+                    "description": "Kód krajiny registrácie (napr. 'MT', 'SK')."
+                  },
+                  "length_m": {
+                    "type": "number",
+                    "description": "Dĺžka člna v metroch."
+                  },
+                  "engine_type": {
+                    "type": "string",
+                    "enum": [
+                      "inboard",
+                      "outboard",
+                      "jetdrive",
+                      "electric"
+                    ],
+                    "description": "Typ pohonu (vnútorný, vonkajší, vodný, elektrický)."
+                  },
+                  "max_speed_kph": {
+                    "type": "number",
+                    "description": "Maximálna rýchlosť v km/h."
+                  },
+                  "person_capacity": {
+                    "type": "integer",
+                    "description": "Maximálny počet osôb na palube."
+                  },
+                  "has_stabilization": {
+                    "type": "boolean",
+                    "description": "Má čln gyro alebo iný systém stabilizácie vĺn?"
+                  },
+                  "manufacturer_name": {
+                    "type": "string",
+                    "description": "Názov výrobcu lode."
+                  },
+                  "current_location": {
+                    "type": "object",
+                    "description": "Aktuálna poloha plavidla podľa GPS.",
+                    "properties": {
+                      "lat": {
+                        "type": "number"
+                      },
+                      "lon": {
+                        "type": "number"
+                      },
+                      "timestamp": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "format": "date-time"
+                      }
+                    },
+                    "required": [
+                      "lat",
+                      "lon"
+                    ]
+                  },
+                  "home_port": {
+                    "type": "string",
+                    "description": "Domovský prístav, kde je čln evidovaný alebo kotví."
+                  },
+                  "related_to_uid": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "UID materskej jachty, ku ktorej tender patrí (ak existuje)."
+                  },
+                  "financial_obligation_uid": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "UID záväzku alebo leasingu."
+                  },
+                  "documents": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "description": "Zoznam dokumentov súvisiacich s člnom.",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "storage_link": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "format": "uri"
+                        },
+                        "related_to_uid": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "type": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "mime_type": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "file_name": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "storage_link",
+                        "related_to_uid",
+                        "type"
+                      ]
+                    }
+                  },
+                  "free_text": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Ľubovoľné poznámky, ktoré sa nedajú zatriediť inam."
+                  }
+                }
+              }
+            },
+            "bicycle": {
+              "type": "array",
+              "description": "Zoznam bicyklov.",
+              "items": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "$id": "schemas/object/vehicle/v1.0.0/bicycle.json",
+                "title": "Bicycle Object – Verzia 1.0.0",
+                "description": "Predpis pre objekt typu bicykel. Zachytáva základné rozdelenie, identifikačné údaje, typ jazdy, pohon a vlastníctvo. Určené na katalogizáciu osobných aj firemných bicyklov bez zbytočnej zložitosti.",
+                "type": "object",
+                "required": [
+                  "uid",
+                  "name",
+                  "privacy_level",
+                  "brand",
+                  "model_name",
+                  "electric_assist",
+                  "ride_type",
+                  "suspension_type",
+                  "size",
+                  "colour_primary",
+                  "official_owner_uid",
+                  "ultimate_beneficial_owner_uid",
+                  "documents",
+                  "free_text"
+                ],
+                "properties": {
+                  "uid": {
+                    "type": "string",
+                    "description": "Unikátny identifikátor bicykla v systéme."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Názov, ktorý bicyklu dá používateľ (ľudské označenie)."
+                  },
+                  "privacy_level": {
+                    "type": "string",
+                    "enum": [
+                      "private",
+                      "public",
+                      "shared"
+                    ],
+                    "default": "private",
+                    "description": "Viditeľnosť objektu."
+                  },
+                  "sharing_rules": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "description": "UID osôb alebo skupín, ktoré majú prístup (pri 'shared').",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "brand": {
+                    "type": "string",
+                    "description": "Značka výrobcu (napr. Trek, Canyon, Specialized)."
+                  },
+                  "model_name": {
+                    "type": "string",
+                    "description": "Model bicykla (napr. Domane SL 6)."
+                  },
+                  "electric_assist": {
+                    "type": "boolean",
+                    "description": "Je bicykel s elektrickým pohonom (ebike)?"
+                  },
+                  "ride_type": {
+                    "type": "string",
+                    "enum": [
+                      "road",
+                      "mountain",
+                      "gravel",
+                      "city",
+                      "hybrid"
+                    ],
+                    "description": "Primárny terén: cestný, horský, gravel (štrkový), mestský, hybrid."
+                  },
+                  "suspension_type": {
+                    "type": "string",
+                    "enum": [
+                      "none",
+                      "front",
+                      "full"
+                    ],
+                    "description": "Typ odpruženia: žiadne, predné, celoodpružené."
+                  },
+                  "size": {
+                    "type": "string",
+                    "description": "Veľkosť rámu alebo výška postavy (napr. M, L, 54 cm)."
+                  },
+                  "colour_primary": {
+                    "type": "string",
+                    "description": "Primárna farba bicykla."
+                  },
+                  "official_owner_uid": {
+                    "type": "string",
+                    "description": "UID oficiálneho vlastníka (napr. firma)."
+                  },
+                  "ultimate_beneficial_owner_uid": {
+                    "type": "string",
+                    "description": "UID konečného používateľa/vlastníka (napr. osoba)."
+                  },
+                  "documents": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "description": "Dokumenty súvisiace s bicyklom (napr. faktúra, servisný záznam).",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "storage_link": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "format": "uri"
+                        },
+                        "related_to_uid": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "type": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "mime_type": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "file_name": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "storage_link",
+                        "related_to_uid",
+                        "type"
+                      ]
+                    }
+                  },
+                  "free_text": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Ľubovoľné poznámky, ktoré nepatria medzi štandardné polia."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "entity": {
+          "type": "object",
+          "description": "Kategória právnických subjektov.",
+          "properties": {
+            "company": {
+              "type": "array",
+              "description": "Zoznam obchodných spoločností.",
+              "items": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "$id": "schemas/object/entity/v1.0.1/company.json",
+                "title": "Company Object – Verzia 1.0.1",
+                "description": "Predpis pre obchodnú spoločnosť s použitím referencií na spoločné objekty.",
+                "allOf": [
+                  {
+                    "type": "object",
+                    "description": "Základný objekt, ktorý obsahuje spoločné atribúty pre všetky typy objektov",
+                    "required": [
+                      "uid",
+                      "name",
+                      "privacy_level",
+                      "free_text"
+                    ],
+                    "properties": {
+                      "uid": {
+                        "type": "string",
+                        "description": "Unikátny identifikátor objektu v systéme."
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Ľudské pomenovanie objektu."
+                      },
+                      "privacy_level": {
+                        "type": "string",
+                        "enum": [
+                          "private",
+                          "public",
+                          "shared"
+                        ],
+                        "default": "private",
+                        "description": "Režim zdieľania objektu."
+                      },
+                      "sharing_rules": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "description": "Zoznam UID osôb alebo skupín, ktoré majú prístup (ak režim je 'shared').",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "free_text": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Ľubovoľné poznámky mimo štruktúry."
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      "jurisdiction_country",
+                      "legal_form",
+                      "registration_number",
+                      "registered_office",
+                      "incorporation_date",
+                      "registered_capital",
+                      "owners",
+                      "related_objects"
+                    ],
+                    "properties": {
+                      "jurisdiction_country": {
+                        "type": "string",
+                        "description": "Kód krajiny, kde je spoločnosť založená (napr. 'SK', 'CZ')."
+                      },
+                      "legal_form": {
+                        "type": "string",
+                        "enum": [
+                          "s.r.o.",
+                          "a.s.",
+                          "k.s.",
+                          "v.o.s.",
+                          "družstvo",
+                          "SE",
+                          "iné"
+                        ],
+                        "description": "Právna forma spoločnosti (napr. spoločnosť s ručením obmedzeným, akciová spoločnosť...)."
+                      },
+                      "registration_number": {
+                        "type": "string",
+                        "description": "IČO alebo iné identifikačné číslo."
+                      },
+                      "registered_office": {
+                        "type": "object",
+                        "description": "Adresa alebo sídlo",
+                        "required": [
+                          "street",
+                          "city",
+                          "postal_code",
+                          "country"
+                        ],
+                        "properties": {
+                          "street": {
+                            "type": "string",
+                            "description": "Ulica a číslo"
+                          },
+                          "city": {
+                            "type": "string",
+                            "description": "Mesto alebo obec"
+                          },
+                          "postal_code": {
+                            "type": "string",
+                            "description": "PSČ"
+                          },
+                          "country": {
+                            "type": "string",
+                            "description": "Kód krajiny (napr. 'SK', 'CZ')"
+                          },
+                          "region": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "Kraj alebo región (nepovinné)"
+                          }
+                        }
+                      },
+                      "incorporation_date": {
+                        "type": "string",
+                        "format": "date",
+                        "description": "Dátum zápisu do registra."
+                      },
+                      "registered_capital": {
+                        "type": "object",
+                        "description": "Základné imanie spoločnosti zapísané v registri.",
+                        "properties": {
+                          "amount": {
+                            "type": "number"
+                          },
+                          "currency": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "amount",
+                          "currency"
+                        ]
+                      },
+                      "owners": {
+                        "type": "array",
+                        "description": "Zoznam vlastníkov s podielmi",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "owner_uid": {
+                              "type": "string"
+                            },
+                            "share_percent": {
+                              "type": "number"
+                            },
+                            "since": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "format": "date"
+                            }
+                          },
+                          "required": [
+                            "owner_uid",
+                            "share_percent"
+                          ]
+                        }
+                      },
+                      "related_objects": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "description": "Zoznam objektov (UID), ku ktorým má spoločnosť akýkoľvek významný vzťah (napr. vlastníctvo, leasing, prevádzkovanie). Konkrétny typ vzťahu je popísaný pri samotnom objekte.",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "documents": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "description": "Zoznam dokumentov súvisiacich s objektom.",
+                        "items": {
+                          "type": "object",
+                          "description": "Dokument súvisiaci s objektom",
+                          "properties": {
+                            "storage_link": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "format": "uri"
+                            },
+                            "related_to_uid": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "type": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "mime_type": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "file_name": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "description": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "storage_link",
+                            "related_to_uid",
+                            "type"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "organization": {
+              "type": "array",
+              "description": "Zoznam neobchodných organizácií.",
+              "items": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "$id": "schemas/object/entity/v1.0.1/organization.json",
+                "title": "Organization Object – Verzia 1.0.1",
+                "description": "Predpis pre neobchodné organizácie s použitím referencií na spoločné objekty.",
+                "allOf": [
+                  {
+                    "type": "object",
+                    "description": "Základný objekt, ktorý obsahuje spoločné atribúty pre všetky typy objektov",
+                    "required": [
+                      "uid",
+                      "name",
+                      "privacy_level",
+                      "free_text"
+                    ],
+                    "properties": {
+                      "uid": {
+                        "type": "string",
+                        "description": "Unikátny identifikátor objektu v systéme."
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Ľudské pomenovanie objektu."
+                      },
+                      "privacy_level": {
+                        "type": "string",
+                        "enum": [
+                          "private",
+                          "public",
+                          "shared"
+                        ],
+                        "default": "private",
+                        "description": "Režim zdieľania objektu."
+                      },
+                      "sharing_rules": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "description": "Zoznam UID osôb alebo skupín, ktoré majú prístup (ak režim je 'shared').",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "free_text": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Ľubovoľné poznámky mimo štruktúry."
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      "org_type",
+                      "jurisdiction_country",
+                      "registered_office",
+                      "roles",
+                      "related_objects"
+                    ],
+                    "properties": {
+                      "org_type": {
+                        "type": "string",
+                        "enum": [
+                          "government",
+                          "municipality",
+                          "foundation",
+                          "association",
+                          "educational",
+                          "nonprofit",
+                          "other"
+                        ],
+                        "description": "Typ organizácie – úrad, nadácia, obec, škola atď."
+                      },
+                      "jurisdiction_country": {
+                        "type": "string",
+                        "description": "Krajina, kde je organizácia zaregistrovaná alebo pôsobí."
+                      },
+                      "registered_office": {
+                        "type": "object",
+                        "description": "Adresa alebo sídlo",
+                        "required": [
+                          "street",
+                          "city",
+                          "postal_code",
+                          "country"
+                        ],
+                        "properties": {
+                          "street": {
+                            "type": "string",
+                            "description": "Ulica a číslo"
+                          },
+                          "city": {
+                            "type": "string",
+                            "description": "Mesto alebo obec"
+                          },
+                          "postal_code": {
+                            "type": "string",
+                            "description": "PSČ"
+                          },
+                          "country": {
+                            "type": "string",
+                            "description": "Kód krajiny (napr. 'SK', 'CZ')"
+                          },
+                          "region": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "Kraj alebo región (nepovinné)"
+                          }
+                        }
+                      },
+                      "parent_uid": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "UID nadradenej organizácie, ak existuje (napr. ministerstvo pre úrad)."
+                      },
+                      "roles": {
+                        "type": "array",
+                        "description": "Zoznam osôb alebo iných UID, ktoré majú v organizácii funkciu (napr. predseda, správca).",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "person_uid": {
+                              "type": "string"
+                            },
+                            "role_title": {
+                              "type": "string"
+                            },
+                            "since": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "format": "date"
+                            }
+                          },
+                          "required": [
+                            "person_uid",
+                            "role_title"
+                          ]
+                        }
+                      },
+                      "related_objects": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "description": "Zoznam UID objektov, s ktorými má organizácia významný vzťah (spravuje, prevádzkuje, vlastní).",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "documents": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "description": "Zoznam dokumentov súvisiacich s objektom.",
+                        "items": {
+                          "type": "object",
+                          "description": "Dokument súvisiaci s objektom",
+                          "properties": {
+                            "storage_link": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "format": "uri"
+                            },
+                            "related_to_uid": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "type": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "mime_type": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "file_name": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "description": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "storage_link",
+                            "related_to_uid",
+                            "type"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "living": {
+          "type": "object",
+          "description": "Kategória živých bytostí.",
+          "properties": {
+            "pet": {
+              "type": "array",
+              "description": "Zoznam domácich zvierat.",
+              "items": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "$id": "schemas/object/living/v1.0.0/pet.json",
+                "title": "Pet Object – Verzia 1.0.0",
+                "description": "Predpis pre domáce zvieratá – individuálne vedené zvieratá vo vlastníctve osoby alebo organizácie. Obsahuje identifikáciu, umiestnenie, starostlivosť a dokumenty.",
+                "type": "object",
+                "required": [
+                  "uid",
+                  "name",
+                  "species",
+                  "birth_date",
+                  "ultimate_beneficial_owner_uid",
+                  "official_owner_uid",
+                  "location_uid",
+                  "has_veterinary_care",
+                  "identifiers",
+                  "documents",
+                  "free_text"
+                ],
+                "properties": {
+                  "uid": {
+                    "type": "string",
+                    "description": "Unikátny identifikátor zvieraťa."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Meno, ktoré zvieraťu priradil človek."
+                  },
+                  "species": {
+                    "type": "string",
+                    "enum": [
+                      "dog",
+                      "cat",
+                      "horse",
+                      "cow",
+                      "sheep",
+                      "pig",
+                      "goat",
+                      "rabbit",
+                      "other"
+                    ],
+                    "description": "Druh zvieraťa."
+                  },
+                  "breed": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Plemeno zvieraťa (ak je známe)."
+                  },
+                  "birth_date": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Dátum narodenia."
+                  },
+                  "location_uid": {
+                    "type": "string",
+                    "description": "UID miesta, kde sa zviera nachádza (napr. dom, farma, chov)."
+                  },
+                  "current_position": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "description": "GPS poloha (napr. podľa sledovacieho obojku).",
+                    "properties": {
+                      "lat": {
+                        "type": "number"
+                      },
+                      "lon": {
+                        "type": "number"
+                      },
+                      "timestamp": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "format": "date-time"
+                      }
+                    },
+                    "required": [
+                      "lat",
+                      "lon"
+                    ]
+                  },
+                  "has_veterinary_care": {
+                    "type": "boolean",
+                    "description": "Je zviera pod veterinárnym dohľadom?"
+                  },
+                  "veterinarian_uid": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "UID veterinára alebo kliniky."
+                  },
+                  "ultimate_beneficial_owner_uid": {
+                    "type": "string",
+                    "description": "UID konečného vlastníka zvieraťa."
+                  },
+                  "official_owner_uid": {
+                    "type": "string",
+                    "description": "UID právneho vlastníka (napr. firma)."
+                  },
+                  "identifiers": {
+                    "type": "array",
+                    "description": "Zoznam identifikátorov – čip, tetovanie, obojok.",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "documents": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "description": "Zoznam dokumentov (očkovací preukaz, čipovacie údaje...).",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "storage_link": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "format": "uri"
+                        },
+                        "related_to_uid": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "type": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "mime_type": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "file_name": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "storage_link",
+                        "related_to_uid",
+                        "type"
+                      ]
+                    }
+                  },
+                  "free_text": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Ľubovoľné poznámky o zvierati."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "realestate": {
+          "type": "object",
+          "description": "Kategória nehnuteľností.",
+          "properties": {
+            "land": {
+              "type": "array",
+              "description": "Zoznam pozemkov.",
+              "items": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "$id": "schemas/object/realestate/v1.0.0/land.json",
+                "title": "Land Object – Verzia 1.0.0",
+                "description": "Predpis pre pozemok. Slúži na evidenciu základných identifikačných údajov, vlastníctva, katastra, polohy a právnych väzieb. Môže byť prepojený so stavbou cez UID.",
+                "type": "object",
+                "required": [
+                  "uid",
+                  "name",
+                  "parcel_number",
+                  "jurisdiction_country",
+                  "cadastral_area",
+                  "land_register_id",
+                  "land_use_type",
+                  "area_m2",
+                  "location_point",
+                  "owners",
+                  "related_building_uids",
+                  "legal_restrictions",
+                  "documents",
+                  "free_text"
+                ],
+                "properties": {
+                  "uid": {
+                    "type": "string",
+                    "description": "Unikátny identifikátor pozemku."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Ľudské meno pozemku (napr. 'Vinica nad hradom')."
+                  },
+                  "parcel_number": {
+                    "type": "string",
+                    "description": "Parcelné číslo (napr. '832/2')."
+                  },
+                  "jurisdiction_country": {
+                    "type": "string",
+                    "description": "Kód krajiny (napr. 'SK')."
+                  },
+                  "cadastral_area": {
+                    "type": "string",
+                    "description": "Katastrálne územie, v ktorom sa pozemok nachádza."
+                  },
+                  "land_register_id": {
+                    "type": "string",
+                    "description": "List vlastníctva alebo iný evidenčný záznam."
+                  },
+                  "land_use_type": {
+                    "type": "string",
+                    "enum": [
+                      "residential",
+                      "agricultural",
+                      "commercial",
+                      "forest",
+                      "meadow",
+                      "orchard",
+                      "vineyard",
+                      "mixed"
+                    ],
+                    "description": "Hlavný účel využitia pozemku."
+                  },
+                  "area_m2": {
+                    "type": "number",
+                    "description": "Rozloha pozemku v m²."
+                  },
+                  "location_point": {
+                    "type": "object",
+                    "description": "Stredová GPS poloha pozemku.",
+                    "properties": {
+                      "lat": {
+                        "type": "number"
+                      },
+                      "lon": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "lat",
+                      "lon"
+                    ]
+                  },
+                  "owners": {
+                    "type": "array",
+                    "description": "Zoznam UID osôb alebo firiem, ktoré sú vlastníkmi (vrátane podielu).",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "owner_uid": {
+                          "type": "string"
+                        },
+                        "share_percent": {
+                          "type": "number"
+                        },
+                        "since": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "format": "date"
+                        }
+                      },
+                      "required": [
+                        "owner_uid",
+                        "share_percent"
+                      ]
+                    }
+                  },
+                  "related_building_uids": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "description": "Zoznam UID stavieb, ktoré sa nachádzajú na tomto pozemku.",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "legal_restrictions": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "description": "Zoznam právnych záťaží (napr. ťarchy, vecné bremená).",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "documents": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "description": "Zoznam dokumentov k pozemku.",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "storage_link": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "format": "uri"
+                        },
+                        "related_to_uid": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "type": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "storage_link",
+                        "related_to_uid",
+                        "type"
+                      ]
+                    }
+                  },
+                  "free_text": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Ľubovoľné poznámky."
+                  }
+                }
+              }
+            },
+            "building": {
+              "type": "array",
+              "description": "Zoznam stavieb.",
+              "items": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "$id": "schemas/object/realestate/v1.0.1/building.json",
+                "title": "Building Object – Verzia 1.0.1",
+                "description": "Predpis pre stavbu s použitím referencií na spoločné objekty.",
+                "allOf": [
+                  {
+                    "type": "object",
+                    "description": "Základný objekt, ktorý obsahuje spoločné atribúty pre všetky typy objektov",
+                    "required": [
+                      "uid",
+                      "name",
+                      "privacy_level",
+                      "free_text"
+                    ],
+                    "properties": {
+                      "uid": {
+                        "type": "string",
+                        "description": "Unikátny identifikátor objektu v systéme."
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Ľudské pomenovanie objektu."
+                      },
+                      "privacy_level": {
+                        "type": "string",
+                        "enum": [
+                          "private",
+                          "public",
+                          "shared"
+                        ],
+                        "default": "private",
+                        "description": "Režim zdieľania objektu."
+                      },
+                      "sharing_rules": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "description": "Zoznam UID osôb alebo skupín, ktoré majú prístup (ak režim je 'shared').",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "free_text": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Ľubovoľné poznámky mimo štruktúry."
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      "building_number",
+                      "jurisdiction_country",
+                      "cadastral_area",
+                      "land_register_id",
+                      "building_type",
+                      "area_m2",
+                      "location_point",
+                      "owners",
+                      "related_land_uid",
+                      "legal_restrictions"
+                    ],
+                    "properties": {
+                      "building_number": {
+                        "type": "string",
+                        "description": "Súpisné číslo stavby (napr. '123')."
+                      },
+                      "jurisdiction_country": {
+                        "type": "string",
+                        "description": "Kód krajiny (napr. 'SK')."
+                      },
+                      "cadastral_area": {
+                        "type": "string",
+                        "description": "Katastrálne územie, v ktorom sa stavba nachádza."
+                      },
+                      "land_register_id": {
+                        "type": "string",
+                        "description": "List vlastníctva alebo iný evidenčný záznam."
+                      },
+                      "building_type": {
+                        "type": "string",
+                        "enum": [
+                          "residential",
+                          "commercial",
+                          "industrial",
+                          "agricultural",
+                          "public",
+                          "mixed"
+                        ],
+                        "description": "Hlavný účel využitia stavby."
+                      },
+                      "area_m2": {
+                        "type": "number",
+                        "description": "Úžitková plocha stavby v m²."
+                      },
+                      "floors": {
+                        "type": "integer",
+                        "description": "Počet podlaží stavby."
+                      },
+                      "construction_year": {
+                        "type": [
+                          "integer",
+                          "null"
+                        ],
+                        "description": "Rok výstavby."
+                      },
+                      "location_point": {
+                        "type": "object",
+                        "description": "GPS poloha stavby.",
+                        "properties": {
+                          "lat": {
+                            "type": "number"
+                          },
+                          "lon": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "lat",
+                          "lon"
+                        ]
+                      },
+                      "owners": {
+                        "type": "array",
+                        "description": "Zoznam vlastníkov s podielmi",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "owner_uid": {
+                              "type": "string"
+                            },
+                            "share_percent": {
+                              "type": "number"
+                            },
+                            "since": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "format": "date"
+                            }
+                          },
+                          "required": [
+                            "owner_uid",
+                            "share_percent"
+                          ]
+                        }
+                      },
+                      "related_land_uid": {
+                        "type": "string",
+                        "description": "UID pozemku, na ktorom sa stavba nachádza."
+                      },
+                      "legal_restrictions": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "description": "Zoznam právnych záťaží (napr. ťarchy, vecné bremená).",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "documents": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "description": "Zoznam dokumentov súvisiacich s objektom.",
+                        "items": {
+                          "type": "object",
+                          "description": "Dokument súvisiaci s objektom",
+                          "properties": {
+                            "storage_link": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "format": "uri"
+                            },
+                            "related_to_uid": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "type": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "mime_type": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "file_name": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "description": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "storage_link",
+                            "related_to_uid",
+                            "type"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

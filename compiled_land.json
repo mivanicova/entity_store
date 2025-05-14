@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/object/realestate/v1.0.0/land.json",
+  "title": "Land Object – Verzia 1.0.0",
+  "description": "Predpis pre pozemok. Slúži na evidenciu základných identifikačných údajov, vlastníctva, katastra, polohy a právnych väzieb. Môže byť prepojený so stavbou cez UID.",
+  "type": "object",
+  "required": [
+    "uid",
+    "name",
+    "parcel_number",
+    "jurisdiction_country",
+    "cadastral_area",
+    "land_register_id",
+    "land_use_type",
+    "area_m2",
+    "location_point",
+    "owners",
+    "related_building_uids",
+    "legal_restrictions",
+    "documents",
+    "free_text"
+  ],
+  "properties": {
+    "uid": {
+      "type": "string",
+      "description": "Unikátny identifikátor pozemku."
+    },
+    "name": {
+      "type": "string",
+      "description": "Ľudské meno pozemku (napr. 'Vinica nad hradom')."
+    },
+    "parcel_number": {
+      "type": "string",
+      "description": "Parcelné číslo (napr. '832/2')."
+    },
+    "jurisdiction_country": {
+      "type": "string",
+      "description": "Kód krajiny (napr. 'SK')."
+    },
+    "cadastral_area": {
+      "type": "string",
+      "description": "Katastrálne územie, v ktorom sa pozemok nachádza."
+    },
+    "land_register_id": {
+      "type": "string",
+      "description": "List vlastníctva alebo iný evidenčný záznam."
+    },
+    "land_use_type": {
+      "type": "string",
+      "enum": [
+        "residential",
+        "agricultural",
+        "commercial",
+        "forest",
+        "meadow",
+        "orchard",
+        "vineyard",
+        "mixed"
+      ],
+      "description": "Hlavný účel využitia pozemku."
+    },
+    "area_m2": {
+      "type": "number",
+      "description": "Rozloha pozemku v m²."
+    },
+    "location_point": {
+      "type": "object",
+      "description": "Stredová GPS poloha pozemku.",
+      "properties": {
+        "lat": {
+          "type": "number"
+        },
+        "lon": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "lat",
+        "lon"
+      ]
+    },
+    "owners": {
+      "type": "array",
+      "description": "Zoznam UID osôb alebo firiem, ktoré sú vlastníkmi (vrátane podielu).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "owner_uid": {
+            "type": "string"
+          },
+          "share_percent": {
+            "type": "number"
+          },
+          "since": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date"
+          }
+        },
+        "required": [
+          "owner_uid",
+          "share_percent"
+        ]
+      }
+    },
+    "related_building_uids": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "description": "Zoznam UID stavieb, ktoré sa nachádzajú na tomto pozemku.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "legal_restrictions": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "description": "Zoznam právnych záťaží (napr. ťarchy, vecné bremená).",
+      "items": {
+        "type": "string"
+      }
+    },
+    "documents": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "description": "Zoznam dokumentov k pozemku.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "storage_link": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uri"
+          },
+          "related_to_uid": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "type": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "storage_link",
+          "related_to_uid",
+          "type"
+        ]
+      }
+    },
+    "free_text": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Ľubovoľné poznámky."
+    }
+  }
+}

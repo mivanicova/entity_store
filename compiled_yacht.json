@@ -1,0 +1,240 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/object/vehicle/v1.0.1/yacht.json",
+  "title": "Yacht Object – Verzia 1.0.1",
+  "description": "Predpis pre objekt typu jachta s použitím referencií na spoločné objekty.",
+  "allOf": [
+    {
+      "type": "object",
+      "description": "Základný objekt, ktorý obsahuje spoločné atribúty pre všetky typy objektov",
+      "required": [
+        "uid",
+        "name",
+        "privacy_level",
+        "free_text"
+      ],
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Unikátny identifikátor objektu v systéme."
+        },
+        "name": {
+          "type": "string",
+          "description": "Ľudské pomenovanie objektu."
+        },
+        "privacy_level": {
+          "type": "string",
+          "enum": [
+            "private",
+            "public",
+            "shared"
+          ],
+          "default": "private",
+          "description": "Režim zdieľania objektu."
+        },
+        "sharing_rules": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Zoznam UID osôb alebo skupín, ktoré majú prístup (ak režim je 'shared').",
+          "items": {
+            "type": "string"
+          }
+        },
+        "free_text": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Ľubovoľné poznámky mimo štruktúry."
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "official_name",
+        "ownership_company_uid",
+        "financial_obligation_uid",
+        "ultimate_beneficial_owners",
+        "flag_country",
+        "length_m",
+        "gross_tonnage",
+        "crew",
+        "crew_count",
+        "guest_capacity",
+        "cabin_count",
+        "max_speed_knots",
+        "colour_primary",
+        "colour_secondary",
+        "mode",
+        "related_objects"
+      ],
+      "properties": {
+        "official_name": {
+          "type": "string",
+          "description": "Registrovaný názov plavidla."
+        },
+        "ownership_company_uid": {
+          "type": "string",
+          "description": "UID spoločnosti, na ktorú je jachta registrovaná."
+        },
+        "ultimate_beneficial_owners": {
+          "type": "array",
+          "description": "Zoznam UID osôb, ktoré sú konečnými vlastníkmi jachty.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "flag_country": {
+          "type": "string",
+          "description": "Kód krajiny vlajky pod ktorou je loď registrovaná (napr. 'MT')."
+        },
+        "financial_obligation_uid": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "UID záväzku spojeného s jachtou (napr. financovanie)."
+        },
+        "length_m": {
+          "type": "number",
+          "description": "Dĺžka jachty v metroch."
+        },
+        "gross_tonnage": {
+          "type": "number",
+          "description": "Hrubá tonáž (GT)."
+        },
+        "crew": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Zoznam členov posádky s funkciou a UID.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "person_uid": {
+                "type": "string"
+              },
+              "role": {
+                "type": "string"
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "person_uid",
+              "role"
+            ]
+          }
+        },
+        "crew_count": {
+          "type": "integer",
+          "description": "Celkový počet posádky."
+        },
+        "guest_capacity": {
+          "type": "integer",
+          "description": "Maximálny počet hostí na spanie."
+        },
+        "cabin_count": {
+          "type": "integer",
+          "description": "Počet kabín na palube."
+        },
+        "max_speed_knots": {
+          "type": "number",
+          "description": "Maximálna rýchlosť v uzloch."
+        },
+        "colour_primary": {
+          "type": "string",
+          "description": "Primárna farba jachty."
+        },
+        "colour_secondary": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Doplnková farba jachty."
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "private",
+            "charter"
+          ],
+          "description": "Režim prevádzky: súkromná alebo komerčná prevádzka."
+        },
+        "related_objects": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "UID ďalších objektov súvisiacich s jachtou (napr. tender, podporné plavidlá).",
+          "items": {
+            "type": "string"
+          }
+        },
+        "documents": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Zoznam dokumentov súvisiacich s objektom.",
+          "items": {
+            "type": "object",
+            "description": "Dokument súvisiaci s objektom",
+            "properties": {
+              "storage_link": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uri"
+              },
+              "related_to_uid": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "type": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "mime_type": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "file_name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "storage_link",
+              "related_to_uid",
+              "type"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

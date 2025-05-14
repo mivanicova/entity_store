@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/object/vehicle/v1.0.0/bicycle.json",
+  "title": "Bicycle Object – Verzia 1.0.0",
+  "description": "Predpis pre objekt typu bicykel. Zachytáva základné rozdelenie, identifikačné údaje, typ jazdy, pohon a vlastníctvo. Určené na katalogizáciu osobných aj firemných bicyklov bez zbytočnej zložitosti.",
+  "type": "object",
+  "required": [
+    "uid",
+    "name",
+    "privacy_level",
+    "brand",
+    "model_name",
+    "electric_assist",
+    "ride_type",
+    "suspension_type",
+    "size",
+    "colour_primary",
+    "official_owner_uid",
+    "ultimate_beneficial_owner_uid",
+    "documents",
+    "free_text"
+  ],
+  "properties": {
+    "uid": {
+      "type": "string",
+      "description": "Unikátny identifikátor bicykla v systéme."
+    },
+    "name": {
+      "type": "string",
+      "description": "Názov, ktorý bicyklu dá používateľ (ľudské označenie)."
+    },
+    "privacy_level": {
+      "type": "string",
+      "enum": [
+        "private",
+        "public",
+        "shared"
+      ],
+      "default": "private",
+      "description": "Viditeľnosť objektu."
+    },
+    "sharing_rules": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "description": "UID osôb alebo skupín, ktoré majú prístup (pri 'shared').",
+      "items": {
+        "type": "string"
+      }
+    },
+    "brand": {
+      "type": "string",
+      "description": "Značka výrobcu (napr. Trek, Canyon, Specialized)."
+    },
+    "model_name": {
+      "type": "string",
+      "description": "Model bicykla (napr. Domane SL 6)."
+    },
+    "electric_assist": {
+      "type": "boolean",
+      "description": "Je bicykel s elektrickým pohonom (ebike)?"
+    },
+    "ride_type": {
+      "type": "string",
+      "enum": [
+        "road",
+        "mountain",
+        "gravel",
+        "city",
+        "hybrid"
+      ],
+      "description": "Primárny terén: cestný, horský, gravel (štrkový), mestský, hybrid."
+    },
+    "suspension_type": {
+      "type": "string",
+      "enum": [
+        "none",
+        "front",
+        "full"
+      ],
+      "description": "Typ odpruženia: žiadne, predné, celoodpružené."
+    },
+    "size": {
+      "type": "string",
+      "description": "Veľkosť rámu alebo výška postavy (napr. M, L, 54 cm)."
+    },
+    "colour_primary": {
+      "type": "string",
+      "description": "Primárna farba bicykla."
+    },
+    "official_owner_uid": {
+      "type": "string",
+      "description": "UID oficiálneho vlastníka (napr. firma)."
+    },
+    "ultimate_beneficial_owner_uid": {
+      "type": "string",
+      "description": "UID konečného používateľa/vlastníka (napr. osoba)."
+    },
+    "documents": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "description": "Dokumenty súvisiace s bicyklom (napr. faktúra, servisný záznam).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "storage_link": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uri"
+          },
+          "related_to_uid": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "type": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "mime_type": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "file_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "storage_link",
+          "related_to_uid",
+          "type"
+        ]
+      }
+    },
+    "free_text": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Ľubovoľné poznámky, ktoré nepatria medzi štandardné polia."
+    }
+  }
+}

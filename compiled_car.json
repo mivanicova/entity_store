@@ -1,0 +1,315 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/object/vehicle/v1.0.1/car.json",
+  "title": "Car Object – Verzia 1.0.1",
+  "description": "Predpis pre objekt typu auto s použitím referencií na spoločné objekty.",
+  "allOf": [
+    {
+      "type": "object",
+      "description": "Základný objekt, ktorý obsahuje spoločné atribúty pre všetky typy objektov",
+      "required": [
+        "uid",
+        "name",
+        "privacy_level",
+        "free_text"
+      ],
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Unikátny identifikátor objektu v systéme."
+        },
+        "name": {
+          "type": "string",
+          "description": "Ľudské pomenovanie objektu."
+        },
+        "privacy_level": {
+          "type": "string",
+          "enum": [
+            "private",
+            "public",
+            "shared"
+          ],
+          "default": "private",
+          "description": "Režim zdieľania objektu."
+        },
+        "sharing_rules": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Zoznam UID osôb alebo skupín, ktoré majú prístup (ak režim je 'shared').",
+          "items": {
+            "type": "string"
+          }
+        },
+        "free_text": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Ľubovoľné poznámky mimo štruktúry."
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "model_name",
+        "model_year",
+        "VIN",
+        "body_style",
+        "door_count",
+        "colour_primary",
+        "engine_type",
+        "displacement_cc",
+        "fuel_type",
+        "transmission_type",
+        "gear_count",
+        "drive_layout",
+        "acquisition_date",
+        "acquisition_method",
+        "acquisition_price",
+        "mileage_log",
+        "registration_plate",
+        "registration_country",
+        "official_owner_uid",
+        "ultimate_beneficial_owner_uid",
+        "financial_obligation_uid"
+      ],
+      "properties": {
+        "model_name": {
+          "type": "string",
+          "description": "Obchodný názov modelu auta."
+        },
+        "model_year": {
+          "type": "integer",
+          "description": "Rok výroby alebo modelový rok auta."
+        },
+        "VIN": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Vehicle Identification Number – jedinečné číslo auta."
+        },
+        "registration_plate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Poznávacia značka vozidla (napr. 'BL 123XY')."
+        },
+        "registration_country": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Kód krajiny, kde je vozidlo registrované (napr. 'SK', 'DE', 'IT')."
+        },
+        "body_style": {
+          "type": "string",
+          "enum": [
+            "SUV",
+            "hatchback",
+            "sedan",
+            "pickup",
+            "wagon",
+            "coupe",
+            "convertible"
+          ],
+          "description": "Typ karosérie auta."
+        },
+        "door_count": {
+          "type": "integer",
+          "description": "Počet dverí."
+        },
+        "colour_primary": {
+          "type": "string",
+          "description": "Hlavná farba karosérie."
+        },
+        "engine_type": {
+          "type": "string",
+          "enum": [
+            "ICE",
+            "hybrid",
+            "plug-in hybrid",
+            "BEV",
+            "FCEV"
+          ],
+          "description": "Typ pohonu auta."
+        },
+        "displacement_cc": {
+          "type": "integer",
+          "description": "Objem motora v cm³."
+        },
+        "fuel_type": {
+          "type": "string",
+          "enum": [
+            "diesel",
+            "petrol",
+            "electric",
+            "hybrid"
+          ],
+          "description": "Typ paliva."
+        },
+        "transmission_type": {
+          "type": "string",
+          "enum": [
+            "manual",
+            "automatic",
+            "CVT",
+            "dual-clutch"
+          ],
+          "description": "Typ prevodovky."
+        },
+        "gear_count": {
+          "type": "integer",
+          "description": "Počet rýchlostí."
+        },
+        "drive_layout": {
+          "type": "string",
+          "enum": [
+            "FWD",
+            "RWD",
+            "AWD",
+            "4WD"
+          ],
+          "description": "Typ pohonu kolies."
+        },
+        "acquisition_date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date",
+          "description": "Dátum nadobudnutia."
+        },
+        "acquisition_method": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "purchase",
+            "lease",
+            "gift",
+            "inheritance"
+          ],
+          "description": "Spôsob nadobudnutia."
+        },
+        "acquisition_price": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Kúpna cena vozidla.",
+          "properties": {
+            "amount": {
+              "type": "number"
+            },
+            "currency": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "amount",
+            "currency"
+          ]
+        },
+        "mileage_log": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Záznamy o najazdených kilometroch.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "timestamp": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "mileage_counter": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "timestamp",
+              "mileage_counter"
+            ]
+          }
+        },
+        "official_owner_uid": {
+          "type": "string",
+          "description": "UID oficiálneho vlastníka vozidla."
+        },
+        "ultimate_beneficial_owner_uid": {
+          "type": "string",
+          "description": "UID konečného užívateľa výhod (UBO)."
+        },
+        "financial_obligation_uid": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "UID záväzku (napr. leasingová zmluva)."
+        },
+        "documents": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Zoznam dokumentov súvisiacich s objektom.",
+          "items": {
+            "type": "object",
+            "description": "Dokument súvisiaci s objektom",
+            "properties": {
+              "storage_link": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uri"
+              },
+              "related_to_uid": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "type": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "mime_type": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "file_name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "storage_link",
+              "related_to_uid",
+              "type"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

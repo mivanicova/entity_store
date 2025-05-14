@@ -1,0 +1,226 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/object/realestate/v1.0.1/building.json",
+  "title": "Building Object – Verzia 1.0.1",
+  "description": "Predpis pre stavbu s použitím referencií na spoločné objekty.",
+  "allOf": [
+    {
+      "type": "object",
+      "description": "Základný objekt, ktorý obsahuje spoločné atribúty pre všetky typy objektov",
+      "required": [
+        "uid",
+        "name",
+        "privacy_level",
+        "free_text"
+      ],
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Unikátny identifikátor objektu v systéme."
+        },
+        "name": {
+          "type": "string",
+          "description": "Ľudské pomenovanie objektu."
+        },
+        "privacy_level": {
+          "type": "string",
+          "enum": [
+            "private",
+            "public",
+            "shared"
+          ],
+          "default": "private",
+          "description": "Režim zdieľania objektu."
+        },
+        "sharing_rules": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Zoznam UID osôb alebo skupín, ktoré majú prístup (ak režim je 'shared').",
+          "items": {
+            "type": "string"
+          }
+        },
+        "free_text": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Ľubovoľné poznámky mimo štruktúry."
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "building_number",
+        "jurisdiction_country",
+        "cadastral_area",
+        "land_register_id",
+        "building_type",
+        "area_m2",
+        "location_point",
+        "owners",
+        "related_land_uid",
+        "legal_restrictions"
+      ],
+      "properties": {
+        "building_number": {
+          "type": "string",
+          "description": "Súpisné číslo stavby (napr. '123')."
+        },
+        "jurisdiction_country": {
+          "type": "string",
+          "description": "Kód krajiny (napr. 'SK')."
+        },
+        "cadastral_area": {
+          "type": "string",
+          "description": "Katastrálne územie, v ktorom sa stavba nachádza."
+        },
+        "land_register_id": {
+          "type": "string",
+          "description": "List vlastníctva alebo iný evidenčný záznam."
+        },
+        "building_type": {
+          "type": "string",
+          "enum": [
+            "residential",
+            "commercial",
+            "industrial",
+            "agricultural",
+            "public",
+            "mixed"
+          ],
+          "description": "Hlavný účel využitia stavby."
+        },
+        "area_m2": {
+          "type": "number",
+          "description": "Úžitková plocha stavby v m²."
+        },
+        "floors": {
+          "type": "integer",
+          "description": "Počet podlaží stavby."
+        },
+        "construction_year": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "Rok výstavby."
+        },
+        "location_point": {
+          "type": "object",
+          "description": "GPS poloha stavby.",
+          "properties": {
+            "lat": {
+              "type": "number"
+            },
+            "lon": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "lat",
+            "lon"
+          ]
+        },
+        "owners": {
+          "type": "array",
+          "description": "Zoznam vlastníkov s podielmi",
+          "items": {
+            "type": "object",
+            "properties": {
+              "owner_uid": {
+                "type": "string"
+              },
+              "share_percent": {
+                "type": "number"
+              },
+              "since": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date"
+              }
+            },
+            "required": [
+              "owner_uid",
+              "share_percent"
+            ]
+          }
+        },
+        "related_land_uid": {
+          "type": "string",
+          "description": "UID pozemku, na ktorom sa stavba nachádza."
+        },
+        "legal_restrictions": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Zoznam právnych záťaží (napr. ťarchy, vecné bremená).",
+          "items": {
+            "type": "string"
+          }
+        },
+        "documents": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Zoznam dokumentov súvisiacich s objektom.",
+          "items": {
+            "type": "object",
+            "description": "Dokument súvisiaci s objektom",
+            "properties": {
+              "storage_link": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uri"
+              },
+              "related_to_uid": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "type": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "mime_type": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "file_name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "storage_link",
+              "related_to_uid",
+              "type"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

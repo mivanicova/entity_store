@@ -1,0 +1,201 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/object/vehicle/v1.0.0/boat-tender.json",
+  "title": "Boat / Tender Object – Verzia 1.0.0",
+  "description": "Predpis pre menšiu loď typu DayCruiser, Tender alebo podporné plavidlo. Objekt môže byť samostatný alebo súvisiaci s inou väčšou jachtou. Zahŕňa identifikačné a technické údaje, polohu a prevádzkové informácie.",
+  "type": "object",
+  "required": [
+    "uid",
+    "name",
+    "official_name",
+    "privacy_level",
+    "registration_number",
+    "registration_country",
+    "length_m",
+    "engine_type",
+    "max_speed_kph",
+    "person_capacity",
+    "has_stabilization",
+    "manufacturer_name",
+    "current_location",
+    "home_port",
+    "related_to_uid",
+    "financial_obligation_uid",
+    "documents",
+    "free_text"
+  ],
+  "properties": {
+    "uid": {
+      "type": "string",
+      "description": "Unikátny identifikátor člna alebo tendera."
+    },
+    "name": {
+      "type": "string",
+      "description": "Ľudské meno lode (napr. 'Leonardo Tender')."
+    },
+    "official_name": {
+      "type": "string",
+      "description": "Registrovaný názov plavidla."
+    },
+    "privacy_level": {
+      "type": "string",
+      "enum": [
+        "private",
+        "public",
+        "shared"
+      ],
+      "default": "private",
+      "description": "Režim zdieľania objektu."
+    },
+    "sharing_rules": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "description": "Zoznam UID osôb alebo skupín, ktoré majú prístup (ak privacy_level = 'shared').",
+      "items": {
+        "type": "string"
+      }
+    },
+    "registration_number": {
+      "type": "string",
+      "description": "Registračné číslo plavidla (napr. MT-1234-DC)."
+    },
+    "registration_country": {
+      "type": "string",
+      "description": "Kód krajiny registrácie (napr. 'MT', 'SK')."
+    },
+    "length_m": {
+      "type": "number",
+      "description": "Dĺžka člna v metroch."
+    },
+    "engine_type": {
+      "type": "string",
+      "enum": [
+        "inboard",
+        "outboard",
+        "jetdrive",
+        "electric"
+      ],
+      "description": "Typ pohonu (vnútorný, vonkajší, vodný, elektrický)."
+    },
+    "max_speed_kph": {
+      "type": "number",
+      "description": "Maximálna rýchlosť v km/h."
+    },
+    "person_capacity": {
+      "type": "integer",
+      "description": "Maximálny počet osôb na palube."
+    },
+    "has_stabilization": {
+      "type": "boolean",
+      "description": "Má čln gyro alebo iný systém stabilizácie vĺn?"
+    },
+    "manufacturer_name": {
+      "type": "string",
+      "description": "Názov výrobcu lode."
+    },
+    "current_location": {
+      "type": "object",
+      "description": "Aktuálna poloha plavidla podľa GPS.",
+      "properties": {
+        "lat": {
+          "type": "number"
+        },
+        "lon": {
+          "type": "number"
+        },
+        "timestamp": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "lat",
+        "lon"
+      ]
+    },
+    "home_port": {
+      "type": "string",
+      "description": "Domovský prístav, kde je čln evidovaný alebo kotví."
+    },
+    "related_to_uid": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "UID materskej jachty, ku ktorej tender patrí (ak existuje)."
+    },
+    "financial_obligation_uid": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "UID záväzku alebo leasingu."
+    },
+    "documents": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "description": "Zoznam dokumentov súvisiacich s člnom.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "storage_link": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uri"
+          },
+          "related_to_uid": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "type": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "mime_type": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "file_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "storage_link",
+          "related_to_uid",
+          "type"
+        ]
+      }
+    },
+    "free_text": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Ľubovoľné poznámky, ktoré sa nedajú zatriediť inam."
+    }
+  }
+}
