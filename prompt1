@@ -1,6 +1,6 @@
 Hello helpful assistant, 
 
-This is my short term memory {{STM}}: 
+This is my short term memory {{ {"json_query":"$[*].STM","json_schema_id":"schemas/memory/memory.json" }  }}: 
 
 This is my {{LTM}}. 
 
